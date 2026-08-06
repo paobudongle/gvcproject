@@ -6,20 +6,16 @@
     <title>数智实验室</title>
     <meta name="renderer" content="webkit">
     <meta charset="utf-8" />
+    <%@ include file="front_head.jsp" %>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=0,minimal-ui">
     <meta name="format-detection" content="telephone=no" />
-    <link href="${pageContext.request.contextPath}/jsp/index/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/jsp/index/css/basic.css'>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jsp/index/css/show.css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/index/xajd/css/home.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/index/css/home.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jsp/index/css/bootstrap.min.css"/>
-    <!--[if lte IE 9]>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/index/xajd/css/home.css">
+<!--[if lte IE 9]>
 	<script src="${pageContext.request.contextPath}/jsp/index/js/lteie9.js"></script>
 	<![endif]-->
-    <script src="${pageContext.request.contextPath}/jsp/index/js/met_temdemo.js"></script>
-    <script src="${pageContext.request.contextPath}/jsp/index/js/jquery-1.8.3.min.js"></script>
+</script>
+</script>
     <script src="${pageContext.request.contextPath}/assets/global/plugins/echarts.min.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/assets/global/scripts/util.js" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
@@ -1413,7 +1409,9 @@
     你正在使用一个 <strong>过时</strong> 的浏览器。请 <a href=https://browsehappy.com/ target=_blank>升级您的浏览器</a>，以提高您的体验。</div>
 <![endif]-->
 <body>
+<div class="site-page-wrap">
 <%@ include file="title.jsp" %>
+<div class="site-page-main">
 <div class="hed"></div>
 <div class="subcolumn_nav_met_16_1 border-bottom1" m-id='8' m-type='nocontent'>
     <div class="container" style="height: auto;overflow: auto;">
@@ -7572,11 +7570,9 @@
         </div>
     </div>
 </div>
+</div><!-- site-page-main -->
 <%@ include file="foot.jsp" %>
-<script src="${pageContext.request.contextPath}/jsp/index/js/basic.js"></script>
 <script src="${pageContext.request.contextPath}/jsp/index/js/show.js"></script>
-</body>
-</html>
 <script>
     $(document).ready(function() {
         <%--var menuId = '${menu_id}'--%>
@@ -7603,3 +7599,7 @@
         <%--})--%>
     })
 </script>
+</div><!-- site-page-wrap -->
+
+</body>
+</html>

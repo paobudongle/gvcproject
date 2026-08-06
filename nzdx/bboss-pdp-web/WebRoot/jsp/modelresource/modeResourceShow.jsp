@@ -13,33 +13,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=0,minimal-ui">
     <meta name="format-detection" content="telephone=no" />
+    <%@ include file="../index/front_head.jsp" %>
     <meta name="description" content="" />
     <meta name="keywords" content="量化经济分析平台" />
     <meta name="generator" content="量化经济分析平台" data-variable=""/>
-    <link href="${pageContext.request.contextPath}/jsp/index/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/modelresource/${pageContext.request.contextPath}/jsp/modelresource/static/css/content_toolbar.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/modelresource/static/css/font-awesome.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/modelresource/static/css/bootstrap.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/modelresource/static/css/common.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/modelresource/static/css/download_new.css">
-
-    <link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/jsp/index/css/basic.css'>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jsp/index/css/news.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jsp/index/css/news.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/index/static/css/common_sync.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/index/static/css/cleft.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/index/static/css/course.css" />
 
     <link href="${pageContext.request.contextPath}/assets/global/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css"/>
     <link href="${pageContext.request.contextPath}/assets/global/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
-    <link href="${pageContext.request.contextPath}/assets/global/plugins/bootstrap-sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
-
-    <link href="${pageContext.request.contextPath}/assets/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css"/>
-    <link href="${pageContext.request.contextPath}/assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css"/>
-
-</head>
+    <link href="${pageContext.request.contextPath}/assets/global/plugins/bootstrap-sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/></head>
 
 <body class="met-navfixed">
+<div class="site-page-wrap">
 <%@ include file="../index/title.jsp" %>
+<div class="site-page-main">
 <div class="meeting_main">
     <div class="container clearfix csdn_dl_bread">
         <div class="row">
@@ -271,10 +266,10 @@
     </div>
 
 </div>
-
+</div><!-- site-page-main -->
 <%@ include file="../index/foot.jsp" %>
-<script src="${pageContext.request.contextPath}/jsp/index/js/basic.js"></script>
-<script src="${pageContext.request.contextPath}/jsp/index/js/index.js"></script>
+</script>
+</script>
 <script src="${pageContext.request.contextPath}/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
@@ -343,6 +338,9 @@
             });
     }
 </script>
+
+</div><!-- site-page-wrap -->
+
 
 </body>
 </html>

@@ -12,29 +12,10 @@
     <meta name="description" content="" />
     <meta name="keywords" content="贸易政策经济影响虚拟仿真实验教学项目" />
     <meta name="generator" content="贸易政策经济影响虚拟仿真实验教学项目" data-variable=""/>
-    <link href="${pageContext.request.contextPath}/jsp/index/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/jsp/index/css/basic.css'>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jsp/index/css/index.css"/>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jsp/index/css/home.css"/>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jsp/index/css/bootstrap.min.css"/>
+    <%@ include file="front_head.jsp" %>
     <!--[if lte IE 9]>
     <script src="${pageContext.request.contextPath}/jsp/index/js/lteie9.js"></script>
     <![endif]-->
-    <script src="${pageContext.request.contextPath}/jsp/index/js/met_temdemo.js"></script>
-	<script src="${pageContext.request.contextPath}/jsp/index/js/jquery-1.8.3.min.js"></script>
-	<script>
-		$(document).ready(function(){
-		 	$("#nav16").addClass("active");
-		});
-	</script>
-	<script>
-	$(function(){
-		var h=$(".td img:eq(0)").height();
-		$(".td img").each(function(){
-		   	$(this).css("height",h);
-		});
-	})
-</script>
 </head>
 <!--[if lte IE 8]>
 <div class="text-xs-center m-b-0 bg-blue-grey-100 alert">
@@ -44,9 +25,10 @@
     你正在使用一个 <strong>过时</strong> 的浏览器。请 <a href=https://browsehappy.com/ target=_blank>升级您的浏览器</a>，以提高您的体验。</div>
 <![endif]-->
 <body class="">
+<div class="site-page-wrap">
 <%@ include file="title.jsp" %>
 <div class="hed"></div>
-<div class="container home">
+<div class="container home site-page-main">
 	<h3>妇女发展政策虚拟仿真实验室</h3>
 	<div class="col-lg-12">
 		<div class="row">
@@ -125,14 +107,20 @@
 		</div>
 	</div>
 </div>
+</div><!-- site-page-main -->
 <%@ include file="foot.jsp" %>
-<script src="${pageContext.request.contextPath}/jsp/index/js/basic.js"></script>
-<script src="${pageContext.request.contextPath}/jsp/index/js/index.js"></script>
-<script>
+<script defer>
     jQuery(document).ready(function () {
         var menuId = '${menu_id}'
         $("#menu_"+menuId).addClass("active");
+        $("#nav16").addClass("active");
+        var h=$(".td img:eq(0)").height();
+        $(".td img").each(function(){
+            $(this).css("height",h);
+        });
 	});
 </script>
+</div><!-- site-page-wrap -->
+
 </body>
 </html>

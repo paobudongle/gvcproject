@@ -11,29 +11,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=0,minimal-ui">
     <meta name="format-detection" content="telephone=no" />
+    <%@ include file="front_head.jsp" %>
     <meta name="description" content="" />
     <meta name="keywords" content="数智实验室" />
     <meta name="generator" content="数智实验室" data-variable=""/>
-    <link href="${pageContext.request.contextPath}/jsp/index/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/jsp/index/css/basic.css'>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jsp/index/css/news.css"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jsp/index/css/home.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jsp/index/css/news.css"/>
     <link href="${pageContext.request.contextPath}/assets/global/plugins/bootstrap-sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
-
-    <script src="${pageContext.request.contextPath}/jsp/index/js/basic.js"></script>
-    <script src="${pageContext.request.contextPath}/jsp/index/js/index.js"></script>
-
-    <script src="${pageContext.request.contextPath}/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-    <script src="${pageContext.request.contextPath}/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="${pageContext.request.contextPath}/assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
-
-
-    <!--[if lte IE 9]>
-    <script src="${pageContext.request.contextPath}/jsp/index/js/lteie9.js"></script>
-    <![endif]-->
-    <script src="${pageContext.request.contextPath}/jsp/index/js/met_temdemo.js"></script>
-    <script src="${pageContext.request.contextPath}/assets/global/plugins/echarts.min.js" type="text/javascript"></script>
-    <script src="${pageContext.request.contextPath}/assets/global/scripts/util.js" type="text/javascript"></script>
     <style>
         /* 本页内容加宽并水平居中 */
         .exper-page {
@@ -71,6 +54,15 @@
             text-align: right;
             margin: 0 0 10px;
         }
+        .exper-page .gender-chart-stage {
+            min-height: 420px;
+        }
+        .exper-page .gender-chart-panel {
+            display: block;
+        }
+        .exper-page .gender-chart-panel.is-hidden {
+            display: none;
+        }
     </style>
 
 </head>
@@ -83,7 +75,9 @@
 <![endif]-->
 
 <body class="met-navfixed">
+<div class="site-page-wrap">
 <%@ include file="title.jsp" %>
+<div class="site-page-main">
 <div class="hed"></div>
 
 <div class="exper-page">
@@ -125,31 +119,30 @@
             <input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option2" onchange="showChar(2)"> 女
         </label>
     </div>
-    <div class="row">
-
-        <div class="col-md-6">
-            <a name="lyf"></a>
-            <div id="lyf_cy" style="width: 100%;height: 400px;"></div>
+    <div class="gender-chart-stage">
+        <div class="row gender-chart-panel" id="male-education-panel">
+            <div class="col-md-6">
+                <a name="lyf"></a>
+                <div id="lyf_cy" style="width: 100%;height: 400px;"></div>
+            </div>
+            <div class="col-md-6">
+                <a name="output"></a>
+                <div id="pro_creat" style="width: 100%;height: 400px;"></div>
+            </div>
         </div>
-        <div class="col-md-6">
-            <a name="output"></a>
-            <div id="pro_creat" style="width: 100%;height: 400px;"></div>
+        <div class="row gender-chart-panel" id="female-education-panel">
+            <div class="col-md-6">
+                <a name="import"></a>
+                <div id="pro_in_cp" style="width: 100%;height: 400px;"></div>
+            </div>
+            <div class="col-md-6">
+                <a name="export"></a>
+                <div id="pro_out_cp" style="width: 100%;height: 400px;"></div>
+            </div>
         </div>
     </div>
     <br/>
     <a name="export"></a>
-
-    <div class="row">
-        <div class="col-md-6">
-            <a name="import"></a>
-            <div id="pro_in_cp" style="width: 100%;height: 400px;"></div>
-        </div>
-        <div class="col-md-6">
-            <a name="export"></a>
-            <div id="pro_out_cp" style="width: 100%;height: 400px;"></div>
-        </div>
-    </div>
-    <br/>
     <a name="import"></a>
 
     <div class="row">
@@ -172,25 +165,14 @@
         <a class="btn btn-danger" target="_blank" href="${pageContext.request.contextPath}/modeljz/toSimulate.page" role="button">开始实验</a>
     </div>
 </div>
+</div><!-- site-page-main -->
 <%@ include file="foot.jsp" %>
-<script>
+<script defer src="${pageContext.request.contextPath}/assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js"></script>
+<script defer src="${pageContext.request.contextPath}/assets/global/plugins/echarts.min.js"></script>
+<script defer src="${pageContext.request.contextPath}/assets/global/scripts/util.js"></script>
+<script defer>
     var usercontextpath = "<%=request.getContextPath()%>";
     var loginAccount = "<%=control.getUserAccount()%>";
-    $(document).ready(function(){
-        var menuId = '${menu_id}'
-        $("#menu_"+menuId).addClass("active");
-        gdpPer();
-        lyfCY();
-        proCreaat();
-        proIn();
-        proOut();
-        proInCP();
-        proOutCP();
-        showChar("1");
-        $(window).on('resize', function () {
-            if (myChart) { myChart.resize(); }
-        });
-    });
 
     // 全局变量
     const years = ['2015年', '2016年', '2017年', '2018年', '2019年', '2021年', '2022年', '2023年'];
@@ -278,14 +260,15 @@
             legend: {
                 data: ['男性', '女性'],
                 top: '5%',
+                left: 'center',
                 itemWidth: 20,
                 itemHeight: 10
             },
             grid: {
-                left: '5%',
-                right: '5%',
+                left: '3%',
+                right: '3%',
                 top: '12%',
-                bottom: '8%',
+                bottom: '6%',
                 containLabel: true
             },
             xAxis: {
@@ -326,20 +309,31 @@
 
         myChart.setOption(option, true);
     }
-    function showChar(value) {
-        if(2==value){
-            $("#lyf_cy").hide();
-            $("#pro_creat").hide();
-            $("#pro_in_cp").show();
-            $("#pro_out_cp").show();
-        }
+    function resizeChartsByIds(chartIds) {
+        chartIds.forEach(function (chartId) {
+            var chartDom = document.getElementById(chartId);
+            if (!chartDom) {
+                return;
+            }
+            var chartInstance = echarts.getInstanceByDom(chartDom);
+            if (chartInstance) {
+                chartInstance.resize();
+            }
+        });
+    }
 
-        if(1==value){
-            $("#lyf_cy").show();
-            $("#pro_creat").show();
-            $("#pro_in_cp").hide();
-            $("#pro_out_cp").hide();
-        }
+    function showChar(value) {
+        var showMale = String(value) === '1';
+        $("#male-education-panel").toggleClass("is-hidden", !showMale);
+        $("#female-education-panel").toggleClass("is-hidden", showMale);
+
+        setTimeout(function () {
+            if (showMale) {
+                resizeChartsByIds(['lyf_cy', 'pro_creat']);
+            } else {
+                resizeChartsByIds(['pro_in_cp', 'pro_out_cp']);
+            }
+        }, 0);
     }
     // 主函数
     function gdpPer() {
@@ -1346,6 +1340,32 @@
         }
     }
 
+    function bootExperPageCharts() {
+        if (typeof jQuery === 'undefined' || typeof echarts === 'undefined') {
+            setTimeout(bootExperPageCharts, 30);
+            return;
+        }
+        jQuery(function(){
+            var menuId = '${menu_id}';
+            jQuery("#menu_" + menuId).addClass("active");
+            gdpPer();
+            lyfCY();
+            proCreaat();
+            proIn();
+            proOut();
+            proInCP();
+            proOutCP();
+            showChar("1");
+            jQuery(window).on('resize', function () {
+                if (myChart) { myChart.resize(); }
+                resizeChartsByIds(['lyf_cy', 'pro_creat', 'pro_in_cp', 'pro_out_cp', 'pro_in', 'pro_out']);
+            });
+        });
+    }
+    bootExperPageCharts();
+
 </script>
+</div><!-- site-page-wrap -->
+
 </body>
 </html>

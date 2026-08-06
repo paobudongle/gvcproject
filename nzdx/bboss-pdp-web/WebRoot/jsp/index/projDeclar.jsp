@@ -9,13 +9,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=0,minimal-ui">
     <meta name="format-detection" content="telephone=no" />
+    <%@ include file="front_head.jsp" %>
     <meta name="description" content="" />
     <meta name="keywords" content="数智实验室" />
     <meta name="generator" content="数智实验室" data-variable=""/>
-    <link href="${pageContext.request.contextPath}/jsp/index/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/jsp/index/css/basic.css'>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jsp/index/css/index.css"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/global/plugins/bootstrap-table/bootstrap-table.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/global/plugins/bootstrap-table/bootstrap-table.min.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/global/plugins/swiper/css/swiper.min.css">
     <script src="${pageContext.request.contextPath}/jsp/index/js/jquery.min.js"></script>
 
@@ -31,7 +29,9 @@
     你正在使用一个 <strong>过时</strong> 的浏览器。请 <a href=https://browsehappy.com/ target=_blank>升级您的浏览器</a>，以提高您的体验。</div>
 <![endif]-->
 <body class="">
+<div class="site-page-wrap">
 <%@ include file="title.jsp" %>
+<div class="site-page-main">
 <div class="hed"></div>
 <div class="container" style="min-width: 970px">
     <div class="row">
@@ -40,12 +40,13 @@
     </div>
     <iframe width="100%" height="600" src="${pageContext.request.contextPath}/fileDir/申报书.pdf"> </iframe>
 </div>
-
-
+</div><!-- site-page-main -->
 <%@ include file="foot.jsp" %>
-<script src="${pageContext.request.contextPath}/jsp/index/js/basic.js"></script>
-<script src="${pageContext.request.contextPath}/jsp/index/js/index.js"></script>
+</script>
+</script>
 <script src="${pageContext.request.contextPath}/assets/global/plugins/bootstrap/js/bootstrap.js"></script>
+</div><!-- site-page-wrap -->
+
 </body>
 <script>
     jQuery(document).ready(function () {

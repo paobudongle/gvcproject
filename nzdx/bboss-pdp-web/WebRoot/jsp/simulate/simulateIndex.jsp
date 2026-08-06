@@ -6,15 +6,11 @@
     <title>数智实验室</title>
     <meta name="renderer" content="webkit">
     <meta charset="utf-8"/>
+    <%@ include file="../index/front_head.jsp" %>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=0,minimal-ui">
-    <meta name="format-detection" content="telephone=no"/>
-    <link href="${pageContext.request.contextPath}/jsp/index/images/favicon.ico" rel="shortcut icon"
-          type="image/x-icon"/>
-
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jsp/simulate/css/demo.css">
-    <link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/jsp/index/css/basic.css'>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jsp/index/css/product.css"/>
+    <meta name="format-detection" content="telephone=no"/><link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jsp/simulate/css/demo.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jsp/index/css/product.css"/>
 
 
     <link href="${pageContext.request.contextPath}/assets/global/plugins/bootstrap/css/bootstrap.css" rel="stylesheet"
@@ -25,12 +21,6 @@
           rel="stylesheet" type="text/css"/>
     <link href="${pageContext.request.contextPath}/assets/global/plugins/bootstrap-sweetalert/sweetalert.css"
           rel="stylesheet" type="text/css"/>
-    <link href="${pageContext.request.contextPath}/assets/global/css/components-md.min.css" rel="stylesheet"
-          id="style_components" type="text/css"/>
-    <link href="${pageContext.request.contextPath}/assets/layouts/layout/css/layout.min.css" rel="stylesheet"
-          type="text/css"/>
-    <link href="${pageContext.request.contextPath}/assets/layouts/layout/css/custom.min.css" rel="stylesheet"
-          type="text/css"/>
     <link rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/assets/global/plugins/jstree/dist/themes/default/style.min.css">
     <link rel="stylesheet" type="text/css"
@@ -48,6 +38,15 @@
             word-break: break-all;
             text-indent: 35px;
         }
+        #zcShorckTxt {
+            white-space: pre-line;
+            text-indent: 0;
+            display: block;
+            text-align: left;
+        }
+        .site-page-main .scenario-detail-table td {
+            text-align: left;
+        }
 
         .mt-element-step .step-line .mt-step-col {
             padding: 20px 0;
@@ -63,13 +62,15 @@
 
 </head>
 <body class="met-navfixed">
+<div class="site-page-wrap">
 <%@ include file="../index/title.jsp" %>
+<div class="site-page-main">
 
 <div class="news_list_met_21_4 met-index-body met-index-imgnews bgcolor" m-id='4' style="padding: 10px 0 0 0;">
     <div class="container">
         <div class="row">
             <!-- END HEAD -->
-            <div class="product_list_page_met_16_1 met-product animsition   type-1 " m-id='14' style="background:none;">
+            <div class="product_list_page_met_16_1 met-product type-1" m-id='14' style="background:none;">
                 <div class="container">
                     <form action="#" class="form-horizontal form_sys_addModelRun" id="form_sys_addModelRun">
                         <input type="hidden" id="exper_id" name="experID" value=""/>
@@ -193,7 +194,7 @@
                                             <div class="row" style="padding-top: 10px;">
                                                 <div class="col-md-1"></div>
                                                 <div class="col-md-9">
-                                                    <table class="table table-bordered">
+                                                    <table class="table table-bordered scenario-detail-table">
                                                         <tr><td>
                                                             <span id="zcShorckTxt" class="ptext" style="font-size: 10pt;">自定义策略</span>
                                                         </td></tr>
@@ -444,60 +445,38 @@
         </div>
     </div>
 </div>
-
+</div><!-- site-page-main -->
 <%@ include file="../index/foot.jsp" %>
-<script src="${pageContext.request.contextPath}/jsp/index/js/basic.js"></script>
-<script src="${pageContext.request.contextPath}/jsp/index/js/index.js"></script>
-
-
+<%--
+  情景详情依赖本页 jQuery(document).ready -> handlePolicyChange。
+  前台框架改造时把脚本改成 defer，且业务脚本是「无 src 的内联 script」：
+  浏览器会忽略内联 script 上的 defer，导致业务代码在 jQuery 加载前同步执行，
+  抛出 ReferenceError: jQuery is not defined，handlePolicyChange 永不注册，
+  于是选项已勾选但 #zcShorckTxt 仍停在 HTML 默认「自定义策略」。
+  这里恢复与生产一致的同步加载顺序（不含 layout.min.js/demo.min.js）。
+--%>
 <!--[if lt IE 9]>
 <script src="${pageContext.request.contextPath}/assets/global/plugins/respond.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/global/plugins/excanvas.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/global/plugins/ie8.fix.min.js"></script>
 <![endif]-->
-<!-- BEGIN CORE PLUGINS -->
-
-<%--<script src="${pageContext.request.contextPath}/jsp/index/js/jquery-1.8.3.min.js"></script>--%>
 <script src="${pageContext.request.contextPath}/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/assets/global/plugins/bootstrap/js/bootstrap.min.js"
-        type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js"
-        type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/assets/global/plugins/jquery.blockui.min.js"
-        type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js"
-        type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/assets/global/plugins/jquery-validation/js/jquery.validate.min.js"
-        type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/assets/global/plugins/jquery-validation/js/additional-methods.min.js"
-        type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/assets/global/plugins/jquery-ui/jquery-ui.min.js"
-        type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/assets/global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/assets/global/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/assets/global/plugins/jquery.form.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js"
-        type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/assets/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js"
-        type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/assets/global/plugins/bootstrap-modal/js/bootstrap-modal.js"
-        type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/assets/global/plugins/bootstrap-confirmation/bootstrap-confirmation.js"
-        type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/assets/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/assets/global/plugins/bootstrap-modal/js/bootstrap-modal.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/assets/global/scripts/app.min.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/assets/global/scripts/util.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/assets/global/plugins/moment.min.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/assets/layouts/layout/scripts/layout.min.js"
-        type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/assets/layouts/layout/scripts/demo.min.js"
-        type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/assets/layouts/global/scripts/quick-sidebar.min.js"
-        type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/assets/global/plugins/jstree/dist/jstree.min.js"
-        type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/assets/global/plugins/jstree/dist/jstree.min.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/assets/global/plugins/echarts.min.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/assets/global/plugins/fSelect/fSelect.js"
-        type="text/javascript"></script>
-
+<script src="${pageContext.request.contextPath}/assets/global/plugins/fSelect/fSelect.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 
@@ -621,14 +600,15 @@
             handlePolicyChange();
         });
 
-        // 页面加载时，如果 selPolicy 有值，自动选中并触发逻辑
+        // 页面加载时：按 URL type 选中，并始终按当前勾选项刷新情景详情
         if (selPolicy && selPolicy !== '') {
             var $targetRadio = $('input:radio[name="policy"][value="' + selPolicy + '"]');
             if ($targetRadio.length > 0) {
                 $targetRadio.prop('checked', true);
-                // 手动调用处理函数，因为 prop('checked') 不会触发 click 事件
-                handlePolicyChange();
             }
+        }
+        if ($('input:radio[name="policy"]:checked').length > 0) {
+            handlePolicyChange();
         }
 
         /**
@@ -776,6 +756,10 @@
             $("#next").show();
         }
 
+        // Bootstrap 4 alpha：div[data-toggle=tab] 无法可靠切换面板，需手动切换内容区
+        $("#model_tab .tab-pane").removeClass("active in show");
+        $("#tab_" + id).addClass("active in show");
+
         if (id == 4) {
             if (jstree == null) {
                 jstree = ajaxTreeSample();
@@ -785,12 +769,13 @@
             }
         }
 
-        for (var i = 0; i < id; i++) {
-            $("#t_div_" + i).removeClass("active");
+        $("[id^=t_div_]").removeClass("active done");
+        for (var i = 1; i < id; i++) {
             $("#t_div_" + i).addClass("done");
         }
-
         $("#t_div_" + id).addClass("active");
+        $("#t_div_1").addClass("first");
+        $("#t_div_4").addClass("last");
 
     }
 
@@ -1853,6 +1838,9 @@
     }
 
 </script>
+
+</div><!-- site-page-wrap -->
+
 
 </body>
 </html>

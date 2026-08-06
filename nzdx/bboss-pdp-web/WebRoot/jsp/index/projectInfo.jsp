@@ -6,94 +6,298 @@
 	<title>数智实验室</title>
 	<meta name="renderer" content="webkit">
 	<meta charset="utf-8" />
+    <%@ include file="front_head.jsp" %>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=0,minimal-ui">
 	<meta name="format-detection" content="telephone=no" />
-	<link href="${pageContext.request.contextPath}/jsp/index/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-	<link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/jsp/index/css/basic.css'>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jsp/index/css/show.css"/>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/index/xajd/css/home.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/index/css/home.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jsp/index/css/bootstrap.min.css"/>
-	<!--[if lte IE 9]>
+<!--[if lte IE 9]>
 	<script src="${pageContext.request.contextPath}/jsp/index/js/lteie9.js"></script>
 	<![endif]-->
-	<script src="${pageContext.request.contextPath}/jsp/index/js/met_temdemo.js"></script>
-	<script src="${pageContext.request.contextPath}/jsp/index/js/jquery-1.8.3.min.js"></script>
 	<%
 		//获得id
 		String id=request.getParameter("id");
 	%>
 	<style>
-
+		.site-page-wrap > header.site-frame-header{
+			position: sticky;
+			top: 0;
+			z-index: 1200;
+			box-shadow: 0 4px 14px rgba(15, 23, 42, 0.12);
+		}
+		.site-page-main .hed{
+			display: none;
+		}
+		.site-page-main .subcolumn_nav_met_16_1{
+			padding: 18px 0 28px;
+			background: #f5f6f8 !important;
+			border-bottom: 0 !important;
+		}
+		.site-page-main .lab-intro-layout{
+			display: flex;
+			align-items: flex-start;
+			gap: 20px;
+			width: 100%;
+			max-width: 1280px;
+			margin: 0 auto;
+			padding: 0 16px;
+			box-sizing: border-box;
+			position: relative;
+		}
+		/* 案例模式：主栏宽度不变，避免居中加宽导致左侧菜单整体左移 */
+		.site-page-main .lab-intro-layout.case-mode{
+			max-width: 1280px;
+		}
+		.site-page-main .lab-intro-side{
+			flex: 0 0 210px;
+			width: 210px;
+			position: sticky;
+			top: 12px;
+			align-self: flex-start;
+			padding: 0;
+		}
+		.site-page-main .experiment-menu{
+			margin: 0;
+			padding: 10px 0;
+			border: 1px solid #e6e8ee;
+			border-radius: 10px;
+			background: #fff;
+		}
+		.site-page-main .experiment-menu li{
+			display: block;
+			margin: 0;
+		}
+		.site-page-main .subcolumn_nav_met_16_1 .subcolumn_nav_met_16_1-ul > li a.experiment-menu-item,
+		.site-page-main .experiment-menu-item{
+			position: relative;
+			display: block;
+			width: auto;
+			margin: 2px 10px;
+			padding: 10px 14px !important;
+			border: 0 !important;
+			border-radius: 8px;
+			outline: none !important;
+			box-shadow: none !important;
+			background: transparent !important;
+			color: #4a5568 !important;
+			font-size: 14px;
+			line-height: 1.5;
+			font-weight: 400;
+			text-align: left;
+			transition: background-color .15s ease, color .15s ease;
+		}
+		.site-page-main .subcolumn_nav_met_16_1 .subcolumn_nav_met_16_1-ul > li a.experiment-menu-item:hover,
+		.site-page-main .experiment-menu-item:hover,
+		.site-page-main .subcolumn_nav_met_16_1 .subcolumn_nav_met_16_1-ul > li a.experiment-menu-item:focus,
+		.site-page-main .experiment-menu-item:focus{
+			background: #f4f5f7 !important;
+			color: #9f0303 !important;
+			text-decoration: none;
+			outline: none !important;
+			box-shadow: none !important;
+		}
+		.site-page-main .subcolumn_nav_met_16_1 .subcolumn_nav_met_16_1-ul > li a.experiment-menu-item.active,
+		.site-page-main .experiment-menu-item.active,
+		.site-page-main .subcolumn_nav_met_16_1 .subcolumn_nav_met_16_1-ul > li a.experiment-menu-item.active:hover,
+		.site-page-main .experiment-menu-item.active:hover,
+		.site-page-main .subcolumn_nav_met_16_1 .subcolumn_nav_met_16_1-ul > li a.experiment-menu-item.active:focus,
+		.site-page-main .experiment-menu-item.active:focus{
+			background: #f8f0f0 !important;
+			color: #9f0303 !important;
+			font-weight: 600;
+			box-shadow: inset 3px 0 0 #bd0a10 !important;
+		}
+		.site-page-main .experiment-menu-item:after{
+			display: none !important;
+		}
+		.site-page-main .lab-intro-reader{
+			flex: 1 1 auto;
+			min-width: 0;
+			margin-bottom: 0;
+			padding: 22px 28px 32px;
+			border: 1px solid #e6e8ee;
+			border-radius: 10px;
+			background: #fff;
+			overflow-x: hidden;
+			overflow-y: auto;
+		}
+		.site-page-main .lab-intro-toc{
+			display: none;
+			box-sizing: border-box;
+			flex: 0 0 220px;
+			width: 220px;
+			position: absolute;
+			top: 0;
+			left: calc(100% + 4px);
+			align-self: flex-start;
+			padding: 14px 12px;
+			border: 1px solid #e6e8ee;
+			border-radius: 10px;
+			background: #fff;
+			z-index: 2;
+		}
+		.site-page-main .lab-intro-layout.case-mode .lab-intro-toc{
+			display: block;
+		}
+		.site-page-main .case-outline-title{
+			margin: 0 8px 10px;
+			padding-bottom: 8px;
+			border-bottom: 1px solid #eef0f4;
+			font-size: 13px;
+			font-weight: 700;
+			color: #2d3748;
+		}
+		.site-page-main .case-outline-item{
+			display: block;
+			margin: 2px 0;
+			padding: 8px 10px;
+			border: 0 !important;
+			border-left: 2px solid transparent !important;
+			border-radius: 0 6px 6px 0;
+			outline: none !important;
+			box-shadow: none !important;
+			background: transparent;
+			color: #5a6577 !important;
+			font-size: 13px;
+			font-weight: 400;
+			line-height: 1.45;
+			text-decoration: none !important;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+		.site-page-main .case-outline-item:hover,
+		.site-page-main .case-outline-item:focus,
+		.site-page-main .case-outline-item:active{
+			background: #f7f8fa;
+			color: #9f0303 !important;
+			text-decoration: none !important;
+			outline: none !important;
+			box-shadow: none !important;
+		}
+		.site-page-main .case-outline-item.active,
+		.site-page-main .case-outline-item.active:hover,
+		.site-page-main .case-outline-item.active:focus{
+			background: #f8f0f0 !important;
+			border-left: 2px solid #bd0a10 !important;
+			color: #9f0303 !important;
+			font-weight: 700 !important;
+			text-decoration: none !important;
+		}
 		.experiment-body{
 			display: none;
 		}
 		.experiment-body.active{
 			display: block;
 		}
-		.subcolumn_nav_met_16_1 .subcolumn_nav_met_16_1-ul > li a.active
-		{
-			background: #bd0a10;
+		.site-page-main .lab-intro-layout.case-mode .experiment-body{
+			display: none;
 		}
-		.top .lists li a.active {
-			padding: 8px 15px;
-			line-height: 22px;
-			background: #dc1111;
-			border-radius: 3px;
+		.site-page-main .lab-intro-layout.case-mode .experiment-body.case-body.case-loaded{
+			display: block;
+			margin-bottom: 28px;
+			padding-bottom: 8px;
+			border-bottom: 1px solid #eef0f4;
+		}
+		.site-page-main .lab-intro-layout.case-mode .experiment-body.case-body.case-loaded:last-of-type{
+			border-bottom: 0;
+			margin-bottom: 0;
+		}
+		.site-page-main .case-read-tip{
+			display: none !important;
+		}
+		.site-page-main .ac .thp{
+			display: block !important;
+			height: auto !important;
+			min-height: 0;
+		}
+		.site-page-main .ac .mint{
+			margin-bottom: 14px;
+			padding: 4px 0 10px;
+			border-bottom: 1px solid #eef0f4;
+		}
+		.site-page-main .ac .mint span{
+			padding: 0;
+			color: #1a202c !important;
+			border-bottom: 0 !important;
+			font-size: 1.25em;
+			font-weight: 600;
+		}
+		.site-page-main .ac img{
+			max-width: 100%;
+			height: auto;
+		}
+		.site-page-main .ac .scdw{
+			padding: 6px 0 10px;
+		}
+		.site-page-main .ac .scdw .ind{
+			line-height: 1.9;
+			color: #4a5568;
 		}
 		.scdw table {
 			width: 100%;
 			border-collapse: collapse;
-			min-width: 700px;
+			min-width: 640px;
 			border-radius: 3px;
-			border: 1px solid #ddd; /* 表格外边框 */
+			border: 1px solid #ddd;
 		}
-
 		.scdw thead {
 			background-color: #f5698f;
 			color: white;
 		}
-
 		.scdw th {
-			padding: 18px 15px;
+			padding: 14px 12px;
 			text-align: left;
 			font-weight: 600;
-			font-size: 1.1rem;
-			border-radius: 3px;
-
+			font-size: 1rem;
 		}
-
-		.scdw th:first-child {
-			border-top-left-radius: 10px;
-		}
-
-		.scdw th:last-child {
-			border-top-right-radius: 10px;
-		}
-
 		.scdw tbody tr {
 			border-bottom: 1px solid #eaeaea;
-			transition: background-color 0.2s;
 		}
-
 		.scdw td {
-			padding: 16px 15px;
+			padding: 14px 12px;
 			vertical-align: top;
-			border: 1px solid #eaeaea; /* 数据单元格边框 */
+			border: 1px solid #eaeaea;
+		}
+		/* 视口不够挂外侧时，导览收回主栏内参与 flex，阅读区略收窄但左侧菜单不位移 */
+		@media (max-width: 1540px){
+			.site-page-main .lab-intro-layout.case-mode .lab-intro-toc{
+				position: static;
+				left: auto;
+			}
+		}
+		@media (max-width: 1100px){
+			.site-page-main .lab-intro-side{
+				flex-basis: 190px;
+				width: 190px;
+			}
+			.site-page-main .lab-intro-toc{
+				flex-basis: 190px;
+				width: 190px;
+			}
+		}
+		@media (max-width: 991px){
+			.site-page-main .lab-intro-layout{
+				display: block;
+			}
+			.site-page-main .lab-intro-side,
+			.site-page-main .lab-intro-toc{
+				position: static;
+				left: auto;
+				width: auto;
+				margin-bottom: 14px;
+			}
+			.site-page-main .lab-intro-layout.case-mode .lab-intro-toc{
+				display: block;
+			}
+			.site-page-main .lab-intro-reader{
+				height: auto !important;
+				padding: 18px;
+			}
+			.scdw table{
+				min-width: 100%;
+			}
 		}
 	</style>
-	<script type="text/javascript">
-		$(function(){
-			var v=1000;
-			var w = $(".ac .thp").height();
-			if (w<v) {
-				$(".ac .thp").css("height",v);
-			}else {
-				$(".ac .thp").css("height",w);
-			}
-		})
-	</script>
 </head>
 <!--[if lte IE 8]>
 <div class="text-xs-center m-b-0 bg-blue-grey-100 alert">
@@ -102,13 +306,15 @@
 	</button>
 	你正在使用一个 <strong>过时</strong> 的浏览器。请 <a href=https://browsehappy.com/ target=_blank>升级您的浏览器</a>，以提高您的体验。</div>
 <![endif]-->
-<body>
+<body class="met-navfixed">
+<div class="site-page-wrap">
 <%@ include file="title.jsp" %>
+<div class="site-page-main">
 <div class="hed"></div>
-<div class="subcolumn_nav_met_16_1 border-bottom1" m-id='8' m-type='nocontent'>
-	<div class="container">
-		<div class="subcolumn-nav text-xs-center col-lg-2" style="padding: 0px 10px;">
-			<ul class="subcolumn_nav_met_16_1-ul experiment-menu" style="border: solid 1px silver;padding: 0px 0px;border-radius: 3px;">
+<div class="subcolumn_nav_met_16_1" m-id='8' m-type='nocontent'>
+	<div class="lab-intro-layout">
+		<div class="lab-intro-side">
+			<ul class="subcolumn_nav_met_16_1-ul experiment-menu">
 				<li>
 					<a href="javascript:void(0)" data-val="1" title="实验室建设目的" class="experiment-menu-item active">实验室建设目的</a>
 				</li>
@@ -119,21 +325,12 @@
 					<a href="javascript:void(0)" data-val="3" title="仿真模拟实验方法" class="experiment-menu-item">仿真模拟实验方法</a>
 				</li>
 				<li>
-					<a href="javascript:void(0)" data-val="4" title="模拟案例" class="experiment-menu-item">模拟案例▼</a>
-				</li>
-				<li>
-					<a href="javascript:void(0)" data-val="4" title="模拟案例一" class="experiment-menu-item">&nbsp;&nbsp;模拟案例一</a>
-				</li>
-				<li>
-					<a href="javascript:void(0)" data-val="5" title="模拟案例二" class="experiment-menu-item">&nbsp;&nbsp;模拟案例二</a>
-				</li>
-				<li>
-					<a href="javascript:void(0)" data-val="6" title="模拟案例三" class="experiment-menu-item">&nbsp;&nbsp;模拟案例三</a>
+					<a href="javascript:void(0)" data-val="4" title="模拟案例" class="experiment-menu-item">模拟案例</a>
 				</li>
 			</ul>
 		</div>
-		<div class="col-lg-10 ac" style="border: solid 1px #cccccc;background: white;padding: 10px 10px;margin-bottom: 25px;overflow: hidden;overflow-y: auto;">
-			<section class="">
+		<div class="lab-intro-reader ac experiment-content-panel">
+			<section>
 				<div class="experiment-body active" data-val="1">
 					<div class="thp">
 						<div class="mint">
@@ -186,7 +383,7 @@
 				</div>
 
 
-				<div class="experiment-body" data-val="4">
+				<div class="experiment-body case-body" data-val="4">
 					<div class="thp" style="height: auto;">
 						<div class="mint">
 							<span>案例一：数字经济发展对女性及家庭的影响</span>
@@ -309,10 +506,10 @@
 
 
 
-				<div class="experiment-body" data-val="5">
+				<div class="experiment-body case-body" data-val="5">
 					<div class="thp" style="height: auto;">
 						<div class="mint">
-							<span>案例2：生育支持政策效果评估</span>
+							<span>案例二：生育支持政策效果评估</span>
 						</div>
 						<div class="scdw">
 							<div class="ind">——现金补贴与育儿假：降低生育机会成本的边际效应分析</div>
@@ -422,10 +619,10 @@
 				</div>
 
 
-				<div class="experiment-body" data-val="6">
+				<div class="experiment-body case-body" data-val="6">
 					<div class="thp" style="height: auto;">
 						<div class="mint">
-							<span>案例3：家庭政策效果评估</span>
+							<span>案例三：家庭政策效果评估</span>
 						</div>
 						<div class="scdw">
 							<div class="ind">——托育与养老服务供给：社会化照料对女性时间的“解放效应”</div>
@@ -546,39 +743,190 @@
 				</div>
 			</section>
 		</div>
+		<aside class="lab-intro-toc" aria-label="案例导览">
+			<div class="case-outline-title">案例导览</div>
+			<a href="javascript:void(0)" class="case-outline-item" data-case-target="4" title="案例一：数字经济发展对女性及家庭的影响">案例一 · 数字经济</a>
+			<a href="javascript:void(0)" class="case-outline-item" data-case-target="5" title="案例二：生育支持政策效果评估">案例二 · 生育支持</a>
+			<a href="javascript:void(0)" class="case-outline-item" data-case-target="6" title="案例三：家庭政策效果评估">案例三 · 家庭政策</a>
+		</aside>
 	</div>
 </div>
-<div class="container">
-
-</div>
+</div><!-- site-page-main -->
 <%@ include file="foot.jsp" %>
-<script src="${pageContext.request.contextPath}/jsp/index/js/basic.js"></script>
-<script src="${pageContext.request.contextPath}/jsp/index/js/show.js"></script>
-</body>
-</html>
-<script>
-	$(document).ready(function() {
-		var menuId = '${menu_id}'
-		$("#menu_"+menuId).addClass("active");
-		var id="<%=id%>";
-		if(!id || id == 'null'){
-			id = 1
+<script defer>
+(function bootProjectInfoPage() {
+	if (typeof jQuery === 'undefined') {
+		setTimeout(bootProjectInfoPage, 30);
+		return;
+	}
+	jQuery(function() {
+		var menuId = '${menu_id}';
+		jQuery("#menu_" + menuId).addClass("active");
+		var id = "<%=id%>";
+		var caseIds = ['4', '5', '6'];
+		var layout = jQuery(".lab-intro-layout");
+		var caseBodies = jQuery(".experiment-body.case-body");
+		var contentPanel = jQuery(".lab-intro-reader");
+		var outlineLockUntil = 0;
+		var currentOutlineId = '';
+		if (!id || id === 'null') {
+			id = '1';
 		}
-		if(id){
+		function isCaseId(targetId) {
+			return jQuery.inArray(String(targetId), caseIds) !== -1;
+		}
+		function syncViewportHeights() {
+			if (window.innerWidth < 992) {
+				layout.css("height", "");
+				contentPanel.css("height", "");
+				return;
+			}
+			var headerHeight = jQuery("header.site-frame-header").outerHeight() || 0;
+			var availableHeight = window.innerHeight - headerHeight - 28;
+			if (availableHeight < 520) {
+				availableHeight = 520;
+			}
+			layout.css("height", availableHeight + "px");
+			contentPanel.css("height", availableHeight + "px");
+		}
+		function updateCaseOutline(targetId) {
+			currentOutlineId = String(targetId);
+			jQuery(".case-outline-item").removeClass("active");
+			jQuery(".case-outline-item[data-case-target='" + currentOutlineId + "']").addClass("active");
+		}
+		function lockOutline(ms) {
+			outlineLockUntil = Date.now() + (ms || 500);
+		}
+		function ensureCasesLoaded(targetId) {
+			var targetIndex = caseIds.indexOf(String(targetId));
+			caseBodies.removeClass("active case-loaded");
+			caseBodies.each(function(index) {
+				if (index <= targetIndex) {
+					jQuery(this).addClass("case-loaded");
+				}
+			});
+			caseBodies.eq(targetIndex).addClass("active");
+			updateCaseOutline(String(targetId));
+		}
+		function scrollToCase(targetId, instant) {
+			var targetBody = caseBodies.filter("[data-val='" + targetId + "']");
+			if (!targetBody.length || !contentPanel.length) {
+				return;
+			}
+			var panelEl = contentPanel[0];
+			var targetEl = targetBody[0];
+			var nextTop = contentPanel.scrollTop()
+				+ targetEl.getBoundingClientRect().top
+				- panelEl.getBoundingClientRect().top;
+			nextTop = Math.max(0, Math.round(nextTop));
+			contentPanel.stop(true);
+			if (instant) {
+				contentPanel.scrollTop(nextTop);
+			} else {
+				contentPanel.animate({ scrollTop: nextTop }, 220);
+			}
+		}
+		function scheduleScrollToCase(targetId) {
+			lockOutline(800);
+			updateCaseOutline(targetId);
 			setTimeout(function() {
-				$(".experiment-menu-item").removeClass('active')
-				$(".experiment-menu-item[data-val='"+id+"']").addClass('active')
-				$(".experiment-body").removeClass('active')
-				$(".experiment-body[data-val='"+id+"']").addClass('active')
+				scrollToCase(targetId, true);
+				requestAnimationFrame(function() {
+					scrollToCase(targetId, true);
+					updateCaseOutline(targetId);
+					lockOutline(300);
+				});
+			}, 30);
+		}
+		function updateCurrentCaseByScroll() {
+			if (!layout.hasClass("case-mode")) {
+				return;
+			}
+			if (Date.now() < outlineLockUntil) {
+				return;
+			}
+			var panelTop = contentPanel[0].getBoundingClientRect().top;
+			var currentId = caseIds[0];
+			caseBodies.filter(".case-loaded").each(function() {
+				var sectionTop = this.getBoundingClientRect().top - panelTop;
+				if (sectionTop <= 96) {
+					currentId = String(jQuery(this).data("val"));
+				}
+			});
+			if (currentId !== currentOutlineId) {
+				updateCaseOutline(currentId);
+			}
+		}
+		function loadNextCaseOnScroll() {
+			if (!layout.hasClass("case-mode")) {
+				return;
+			}
+			var loadedCases = caseBodies.filter(".case-loaded");
+			if (loadedCases.length >= caseBodies.length) {
+				return;
+			}
+			var lastLoaded = loadedCases.last();
+			var reachBottom = contentPanel.scrollTop() + contentPanel.innerHeight();
+			var triggerPoint = lastLoaded.position().top + lastLoaded.outerHeight() - 120;
+			if (reachBottom >= triggerPoint) {
+				caseBodies.eq(loadedCases.length).addClass("case-loaded");
+			}
+		}
+		function activateCaseMode(targetId) {
+			layout.addClass("case-mode");
+			jQuery(".experiment-body").removeClass("active");
+			ensureCasesLoaded(targetId);
+			scheduleScrollToCase(String(targetId));
+		}
+		function activateStandardMode(targetId) {
+			layout.removeClass("case-mode");
+			caseBodies.removeClass("case-loaded");
+			jQuery(".experiment-body").removeClass("active");
+			jQuery(".experiment-body[data-val='" + targetId + "']").addClass("active");
+			contentPanel.scrollTop(0);
+		}
+		function setActivePanel(targetId, targetItem) {
+			jQuery(".experiment-menu-item").removeClass('active');
+			if (isCaseId(targetId)) {
+				jQuery(".experiment-menu-item[data-val='4']").addClass("active");
+				activateCaseMode(String(targetId));
+				return;
+			}
+			if (targetItem && targetItem.length) {
+				targetItem.addClass('active');
+			} else {
+				jQuery(".experiment-menu-item[data-val='" + targetId + "']").first().addClass('active');
+			}
+			activateStandardMode(String(targetId));
+		}
+		syncViewportHeights();
+		jQuery(window).on("resize", syncViewportHeights);
+		if (id) {
+			setTimeout(function() {
+				setActivePanel(id, jQuery(".experiment-menu-item[data-val='" + id + "']").first());
 			}, 100);
 		}
-
-		$(".experiment-menu-item").on('click',function(){
-			$(".experiment-menu-item").removeClass('active')
-			$(this).addClass('active')
-			var bodyIndex = $(this).data().val
-			$(".experiment-body").removeClass('active')
-			$(".experiment-body[data-val='"+bodyIndex+"']").addClass('active')
-		})
-	})
+		jQuery(".experiment-menu-item").on('click', function() {
+			var bodyIndex = jQuery(this).data().val;
+			setActivePanel(bodyIndex, jQuery(this));
+		});
+		jQuery(".case-outline-item").on("click", function(e) {
+			e.preventDefault();
+			var targetId = String(jQuery(this).data("caseTarget"));
+			jQuery(".experiment-menu-item").removeClass("active");
+			jQuery(".experiment-menu-item[data-val='4']").addClass("active");
+			updateCaseOutline(targetId);
+			activateCaseMode(targetId);
+			this.blur();
+		});
+		contentPanel.on("scroll", function() {
+			loadNextCaseOnScroll();
+			updateCurrentCaseByScroll();
+		});
+	});
+})();
 </script>
+</div><!-- site-page-wrap -->
+
+</body>
+</html>

@@ -11,16 +11,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=0,minimal-ui">
     <meta name="format-detection" content="telephone=no" />
+    <%@ include file="front_head.jsp" %>
     <meta name="description" content="" />
     <meta name="keywords" content="贸易政策经济影响虚拟仿真实验教学项目" />
     <meta name="generator" content="贸易政策经济影响虚拟仿真实验教学项目" data-variable=""/>
-    <link href="${pageContext.request.contextPath}/jsp/index/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/jsp/index/css/basic.css'>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jsp/index/css/news.css"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jsp/index/css/home.css"/>
-
-    <script src="${pageContext.request.contextPath}/jsp/index/js/basic.js"></script>
-    <script src="${pageContext.request.contextPath}/jsp/index/js/index.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jsp/index/css/news.css"/>
+</script>
+</script>
 
     <script src="${pageContext.request.contextPath}/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
@@ -29,7 +26,7 @@
     <!--[if lte IE 9]>
     <script src="${pageContext.request.contextPath}/jsp/index/js/lteie9.js"></script>
     <![endif]-->
-    <script src="${pageContext.request.contextPath}/jsp/index/js/met_temdemo.js"></script>
+</script>
 
     <style>
         .container.preview{
@@ -111,7 +108,9 @@
 <![endif]-->
 
 <body class="met-navfixed">
+<div class="site-page-wrap">
 <%@ include file="title.jsp" %>
+<div class="site-page-main">
 <div class="hed"></div>
 
 <div class="container home">
@@ -157,9 +156,11 @@
         </div>
     </div>
 </div>
-
-
+</div><!-- site-page-main -->
 <%@ include file="foot.jsp" %>
+
+</div><!-- site-page-wrap -->
+
 
 </body>
 </html>

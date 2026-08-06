@@ -1,0 +1,46 @@
+/**
+ * 前台内容区后台组件样式（仅 .site-page-main 内生效，不影响页头页脚）
+ */
+.site-page-main .portlet.light.bordered {
+    border: 1px solid #e7ecf1;
+    background: #fff;
+}
+
+.site-page-main .portlet.light .portlet-body {
+    padding-top: 8px;
+}
+
+.site-page-main .btn.green-haze {
+    color: #fff;
+    background-color: #44b6ae;
+    border-color: #44b6ae;
+}
+
+.site-page-main .btn.green-haze:hover,
+.site-page-main .btn.green-haze:focus {
+    color: #fff;
+    background-color: #3a9a94;
+    border-color: #378c86;
+}
+
+.site-page-main .table th,
+.site-page-main .table td {
+    text-align: center;
+    vertical-align: middle !important;
+}
+
+.site-page-main .note-popover {
+    display: none;
+}
+
+.site-page-main .portlet.light.bordered > .portlet-title {
+    border-bottom: 0 solid #eef1f5;
+}
+
+.site-page-main .table-scrollable {
+    margin: 0 !important;
+}
+
+.site-page-main .subcolumn_nav_met_16_1 {
+    background-color: #ffffff;
+}

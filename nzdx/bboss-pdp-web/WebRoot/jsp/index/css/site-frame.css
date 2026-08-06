@@ -1,0 +1,90 @@
+/**
+ * 前台公共框架样式：页头/页脚/页面骨架
+ * 所有菜单页必须加载本文件，保证左上角单位标识在各页面一致。
+ */
+
+/* 页面骨架：内容不足时页脚贴底 */
+.site-page-wrap {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.site-page-wrap > header.site-frame-header {
+    flex-shrink: 0;
+    width: 100%;
+}
+
+.site-page-wrap > .site-page-main {
+    flex: 1 0 auto;
+    width: 100%;
+}
+
+.site-page-wrap > footer.met-foot {
+    flex-shrink: 0;
+    margin-top: auto;
+    width: 100%;
+}
+
+/* 首屏内容立即可见，避免 JS 加载前空白 */
+.site-page-main {
+    visibility: visible;
+    opacity: 1;
+}
+
+body.met-navfixed {
+    padding-top: 0 !important;
+}
+
+header.site-frame-header {
+    background: #bd0a10;
+    position: relative;
+    width: 100%;
+    height: auto;
+    flex-shrink: 0;
+}
+
+header.site-frame-header .site-frame-header-inner {
+    position: relative;
+    width: 100%;
+    background: #bd0a10;
+    z-index: 100;
+}
+
+/* 页头品牌区：与 title.jsp 内联样式一致，仅防止其它 CSS 覆盖颜色与 Logo 尺寸 */
+header.site-frame-header .met-logo {
+    max-width: none !important;
+    display: inline-block;
+}
+
+header.site-frame-header .met-logo .vertical-align-middle {
+    max-width: none !important;
+    display: inline-block;
+}
+
+header.site-frame-header .met-logo table {
+    width: auto;
+    table-layout: auto;
+}
+
+header.site-frame-header .met-logo table td h2,
+header.site-frame-header .met-logo table td h4 {
+    color: #ecf1f5 !important;
+    white-space: nowrap !important;
+    word-break: keep-all !important;
+}
+
+header.site-frame-header .met-logo table td img {
+    height: 80px;
+    max-height: none !important;
+    max-width: none !important;
+}
+
+/* 页头 row 对齐：抵消 .container 内边距，避免个别页面 CSS 覆盖 .row 导致品牌区右移 */
+header.site-frame-header .site-frame-top-row,
+header.site-frame-header .top.row {
+    margin-left: -15px !important;
+    margin-right: -15px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
