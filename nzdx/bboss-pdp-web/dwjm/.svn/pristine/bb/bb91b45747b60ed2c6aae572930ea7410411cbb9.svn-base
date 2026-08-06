@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="bboss-pdp-adminservice_main" target="1.8" />
+      <module name="bboss-pdp-adminservice_test" target="1.8" />
+      <module name="bboss-pdp-auth_main" target="1.8" />
+      <module name="bboss-pdp-auth_test" target="1.8" />
+      <module name="bboss-pdp-config_main" target="1.8" />
+      <module name="bboss-pdp-config_test" target="1.8" />
+      <module name="bboss-pdp-dict_main" target="1.8" />
+      <module name="bboss-pdp-dict_test" target="1.8" />
+      <module name="bboss-pdp-dubbo-inf_main" target="1.8" />
+      <module name="bboss-pdp-dubbo-inf_test" target="1.8" />
+      <module name="bboss-pdp-dubbo_main" target="1.8" />
+      <module name="bboss-pdp-dubbo_test" target="1.8" />
+      <module name="bboss-pdp-fastwx_main" target="1.8" />
+      <module name="bboss-pdp-fastwx_test" target="1.8" />
+      <module name="bboss-pdp-web_main" target="1.8" />
+      <module name="bboss-pdp-web_test" target="1.8" />
+      <module name="dwjm_main" target="1.8" />
+      <module name="dwjm_test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

@@ -1,0 +1,214 @@
+<!-- 
+	任务调度
+-->
+<properties>
+		<!--
+		quartz引擎监听器配置
+		-->
+	<property name="quartz.config.schedulerlistener">
+		<list componentType="bean">
+			<property name="DefaultSchedulerlistener" class="org.frameworkset.task.DefaultSchedulerListener"/>
+		</list>
+	</property>
+	<!--
+		任务全局监听器配置
+		-->
+	<property name="quartz.config.globaljoblistener">
+		<list componentType="bean">
+			
+		</list>
+		<!-- for cluster -->
+		
+	</property>
+	<!--
+		任务监听器配置
+		-->
+	<property name="quartz.config.joblistener">
+		<list componentType="bean">
+			<property name="DefaultJobListener" class="org.frameworkset.task.DefaultJobListener"/>
+		</list>
+		<!-- for cluster -->
+		
+	</property>
+	<!--
+		任务全局Trigger监听器配置
+		-->
+	<property name="quartz.config.globaltriggerlistener">
+		<list componentType="bean">
+			<!--<property name="GlobleTriggerListener" class="org.frameworkset.task.GlobalTriggerListener"/>-->
+		</list>
+		<!-- for cluster -->
+		
+	</property>
+	<!--
+		任务Trigger监听器配置
+		-->
+	<property name="quartz.config.triggerlistener">
+		<list componentType="bean">
+			<property name="DefaultTriggerListener" class="org.frameworkset.task.DefaultTriggerListener"/>
+		</list>
+		<!-- for cluster -->
+		
+	</property>
+	<!--
+		任务日历配置
+		AnnualCalendar
+		CronCalendar
+		DailyCalendar
+		HolidayCalendar
+		MonthlyCalendar
+		WeeklyCalendar
+		-->
+	<property name="quartz.config.calendar">
+		<map>
+			<property name="2012year">
+				<![CDATA[ 
+				//法定节日是以每年为周期的，所以使用AnnualCalendar
+				AnnualCalendar holidays = new AnnualCalendar();
+				//五一劳动节
+				java.util.Calendar laborDay = new GregorianCalendar();
+				laborDay.add(java.util.Calendar.MONTH,5);
+				laborDay.add(java.util.Calendar.DATE,1);
+				holidays.setDayExcluded(laborDay, true); //排除的日期，如果设置为false则为包含
+				//国庆节
+				java.util.Calendar nationalDay = new GregorianCalendar();
+				nationalDay.add(java.util.Calendar.MONTH,10);
+				nationalDay.add(java.util.Calendar.DATE,1);
+				holidays.setDayExcluded(nationalDay, true);//排除该日期
+				return holidays;
+					]]>
+			</property>
+			<!--<property name="2013year" class="org.frameworkset.task.TestCalendarBuilder"/>-->
+		</map>
+		<!-- for cluster -->
+		
+	</property>
+	<property name="taskconfig" enable="false">
+		<list>
+			<property name="定时任务执行器" taskid="default"
+				class="org.frameworkset.task.DefaultScheduleService" used="true">
+				<!--
+                        可执行的任务项
+                        属性说明：
+                        name：任务项名称
+                        id:任务项标识
+                        action:具体的任务执行处理程序,实现org.frameworkset.task.Execute接口
+                        cron_time：  cron格式的时间表达式，用来管理任务执行的生命周期，相关的规则请参照日期管理控件quartz的说明文档
+                        基本格式 : [参数间必须使用空格隔开]
+                        *　　*　　*　　*　　*　　command
+                        分　时　日　月　周　命令
+
+                        第1列表示分钟1～59 每分钟用*或者 */1表示
+                        第2列表示小时1～23（0表示0点）
+                        第3列表示日期1～31
+                        第4列表示月份1～12
+                        第5列标识号星期0～6（0表示星期天）
+                        第6列要运行的命令
+                        shouldRecover:集群环境下属性必须设置为 true，当Quartz服务被中止后，再次启动或集群中其他机器接手任务时会尝试恢复执行之前未完成的所有任务。
+                        used 是否使用
+                        true 加载，缺省值
+                        false 不加载
+                        子元素说明：
+                        parameter:设置任务执行的参数，name标识参数名称，value指定参数的值
+                    -->
+				
+				<list>
+				  <!-- 
+					<property name="runDroolsRules" jobid="runDroolsRules"						
+						bean-class="com.frameworkset.platform.integralwarning.drools.service.impl.StartupRuleCalculateServiceImpl"
+						method="doCalculate"
+						cronb_time="0/30 * * * * ?" used="true"
+						shouldRecover="false">
+						<construction>
+							<property value="100" />
+						</construction>
+					</property>
+					
+					<property name="runpointsum" jobid="runpointsum"						
+						bean-class="com.frameworkset.platform.integralwarning.assistjudge.service.RunPPointSum"
+						method="runPointSum"
+						cronb_time="0 0 0/1 * * ?" used="true"
+						shouldRecover="false">
+					</property>
+									
+					 <property name="runportalPending" jobid="runportalPending"						
+						bean-name="portalMonitor"
+						method="PendingMonitor"
+						cronb_time="0 0/10 * * * ?" used="false"
+						shouldRecover="false">
+						
+					</property>
+					 -->
+
+
+					<!--配置定时任务-模型加总-->
+					<!--<property name="quartzj" jobid="quartzj"-->
+					<!--bean-name="quartzj"-->
+					<!--method="runJZ"-->
+					<!--cronb_time="1 * * * * ?" used="true"-->
+					<!--shouldRecover="false"/>-->
+
+					<property name="subscriptions" jobid="subscriptions"
+					bean-name="subscriptions"
+					method="subscriptionsTask"
+					cronb_time="* 0 * * * ?" used="true"
+					shouldRecover="false"/>
+
+					<property name="subscriptionsRemoveRole" jobid="subscriptionsRemoveRole"
+							  bean-name="subscriptionsRemoveRole"
+							  method="subscriptionsRemoveRoleTask"
+							  cronb_time="* 0 * * * ?" used="true"
+							  shouldRecover="false"/>
+
+				</list>
+				 
+			</property>
+			
+			
+		</list>
+	</property>
+
+	<!--<property name="quartzj" class="com.task.JzTask"/>-->
+
+	<property name="subscriptions" class="com.pcloud.notification.action.NotificationController"/>
+	<property name="subscriptionsRemoveRole" class="com.pcloud.notification.action.NotificationController"/>
+
+	<!-- 
+	<property name="hrSyncTask"  factory-bean="hr.ioccontext" factory-method="getBeanObject">
+		<construction>
+			<property value="masterdata.hrSyncTask" />
+		</construction>
+	</property>
+	<property name="hr.ioccontext" factory-class="org.frameworkset.spi.DefaultApplicationContext" factory-method="getApplicationContext">
+		<construction>
+			<property value="bboss-masterdata-humanResource.xml" />
+		</construction>
+	</property>
+	
+	
+	<property name="portalMonitor" factory-bean="webapplicationcontext" factory-method="getBeanObject">
+		<construction>
+			<property value="appMonitorService" />
+		</construction>
+	</property>
+	<property name="sanylogOperCounterStatisticDailyJob" factory-bean="webapplicationcontext" factory-method="getBeanObject">
+		<construction>
+			<property value="sanylogOperCounterStatisticDailyTask" />
+		</construction>
+	</property>
+	 <property name="sanylogBrowserCounterStatisticDailyJob" factory-bean="webapplicationcontext" factory-method="getBeanObject">
+		<construction>
+			<property value="sanylogBrowserCounterStatisticDailyTask" />
+		</construction>
+	</property>
+	 -->
+	<!-- 流程节点处理超时监控	        -->
+		<!-- 
+	<property name="sanybps_process_overtime_checkjob" factory-bean="webapplicationcontext" factory-method="getBeanObject">
+		<construction>
+			<property value="checkProcessOvertimeTask" />
+		</construction>
+	</property> 
+	
+	<property name="webapplicationcontext" factory-class="org.frameworkset.web.servlet.support.WebApplicationContextUtils" factory-method="getWebApplicationContext"/>   -->
+</properties>

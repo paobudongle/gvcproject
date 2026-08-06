@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.bbossgroups.activiti:activiti-bpmn-converter:5.12.7">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.bbossgroups.activiti/activiti-bpmn-converter/5.12.7/15573d0e879279286226bebebc1a3c1e842154c7/activiti-bpmn-converter-5.12.7.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.bbossgroups.activiti/activiti-bpmn-converter/5.12.7/82fd08c4701cbaf467ecdf417db07815d7c6a156/activiti-bpmn-converter-5.12.7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

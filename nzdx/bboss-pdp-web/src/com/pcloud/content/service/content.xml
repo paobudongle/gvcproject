@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+**
+ *  Copyright 2008-2010 biaoping.yin
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ *
+ * Title: content.xml
+ * Description: 内容表sql配置文件 
+ * Company:xxx
+ * Copyright (c) 2015
+ * @Date 2018-03-18 10:26:11
+ * @author lijia
+ * @version v1.0 
+ **
+ -->
+<properties>
+	
+		<property name="addContent">
+		<![CDATA[
+			insert into t_cms_content (content_id,author,channel_id,cms_content,content_img,content_status,crawl_id,create_date,creater,del_flag,description,last_modifier,last_modify_date,media_id,newsdate,orgin,orgin_url,release_date,short_title,title,title_img,attach_id,index_img) values(#[contentId],#[author],#[channelId],#[cmsContent],#[contentImg],#[contentStatus],#[crawlId],#[createDate],#[creater],#[delFlag],#[description],#[lastModifier],#[lastModifyDate],#[mediaId],#[newsdate],#[orgin],#[orginUrl],#[releaseDate],#[shortTitle],#[title],#[titleImg],#[attachId],#[indexImg])
+		]]>
+	</property>
+		<property name="deleteByKey">
+		<![CDATA[
+			delete from t_cms_content where content_id=?
+		]]>
+	</property>
+
+
+		<property name="updateContent">
+		<![CDATA[
+			update t_cms_content set content_id=#[contentId],author=#[author],channel_id=#[channelId],cms_content=#[cmsContent],content_img=#[contentImg],content_status=#[contentStatus],crawl_id=#[crawlId],create_date=#[createDate],creater=#[creater],del_flag=#[delFlag],description=#[description],last_modifier=#[lastModifier],last_modify_date=#[lastModifyDate],media_id=#[mediaId],newsdate=#[newsdate],orgin=#[orgin],orgin_url=#[orginUrl],release_date=#[releaseDate],short_title=#[shortTitle],title=#[title],title_img=#[titleImg],attach_id=#[attachId],index_img=#[indexImg] where content_id=#[contentId]
+		]]>
+	</property>
+
+	<property name="sendContent">
+		<![CDATA[
+			update t_cms_content set content_status= '1' where content_id = ?
+		]]>
+	</property>
+		<property name="selectById">
+		<![CDATA[
+			select a.*,b.title as channelName from t_cms_content a
+			JOIN t_cms_channel b on a.channel_id = b.channel_id
+			 where content_id=?
+		]]>
+	</property>
+
+	<property name="queryListContent">
+		<![CDATA[
+			select a.*,b.title as channelName from t_cms_content a
+			JOIN t_cms_channel b on a.channel_id = b.channel_id
+
+			 where 1=1
+			#if($cmsContent && !$cmsContent.equals(""))
+				and a.cms_content like #[cmsContent]
+			#end
+			#if($title && !$title.equals(""))
+				and a.title like #[title]
+			#end
+			#if($channelId && !$channelId.equals(""))
+				#if($channelId.equals("1"))
+					and a.hotnews = 1
+				#end
+				#if(!$channelId.equals("1"))
+					and a.channel_id = #[channelId]
+				#end
+			#end
+
+			#if($searchword && !$searchword.equals(""))
+				and (a.title like #[searchword] or a.cms_content like #[searchword])
+			#end
+		]]>
+	</property>
+
+	<property name="queryListInfoReprintContents">
+		<![CDATA[
+
+			SELECT a.*,b.website_name,c.channel_id,c.content_id,c.release_date,d.title AS channelName FROM  t_crawl_records a
+			left join t_crawl_website b on a.websit_id = b.websit_id
+			LEFT JOIN t_cms_content c on a.crawl_id = c.crawl_id
+			LEFT JOIN t_cms_channel d on c.channel_id = d.channel_id
+			where 1=1
+
+			#if($crawlId && $crawlId.equals("0"))
+				and c.crawl_id IS NULL
+			#end
+			#if($crawlId && $crawlId.equals("1"))
+				and c.crawl_id IS NOT NULL
+			#end
+		]]>
+	</property>
+
+
+	<property name="getPrintContent">
+		<![CDATA[
+
+			SELECT a.* FROM t_crawl_records a where a.crawl_id = ?
+
+		]]>
+	</property>
+
+	<property name="deleteBatchReprintContent">
+		<![CDATA[
+			delete from t_crawl_records where crawl_id=?
+		]]>
+	</property>
+
+
+	<property name="queryListInfoHotNewsByTopTen">
+		<![CDATA[
+			select a.*,b.title as channelName from t_cms_content a
+			JOIN t_cms_channel b on a.channel_id = b.channel_id
+
+
+			 where a.content_status ='1' and a.hotnews ='1'  order by a.release_date desc  limit 9
+		]]>
+	</property>
+
+
+
+
+
+	</properties>

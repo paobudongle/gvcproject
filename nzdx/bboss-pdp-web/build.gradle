@@ -1,0 +1,71 @@
+//apply plugin: "war"
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+        resources {
+            srcDir 'resources'
+            srcDir 'src'  exclude '**/*.java'
+        }
+    }
+    
+     test {
+        java {
+            srcDir 'test'
+        }
+        resources {
+			srcDir 'test'  exclude '**/*.java'
+        }
+         
+    }
+   
+}
+
+ dependencies {
+	   
+	 	compile project(':bboss-pdp-adminservice')
+	 	compile project(':bboss-pdp-auth')
+	   compile project(':bboss-pdp-dict')
+	   compile project(':bboss-pdp-fastwx')
+	   compile project(':bboss-pdp-dubbo-inf')
+	  compile 'io.jsonwebtoken:jjwt:0.7.0' 
+	  // https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2
+compile group: 'org.apache.commons', name: 'commons-dbcp2', version: '2.2.0'
+	  
+      compile (
+			  [group: 'com.bbossgroups.plugins', name: 'bboss-elasticsearch-rest-booter', version: "${bboss_es_version}", transitive: true],
+              [group: 'com.bbossgroups.plugins', name: 'bboss-plugin-dubbo', version: "${bbossplugin_version}", transitive: true],
+              [group: 'com.bbossgroups.plugins', name: 'bboss-plugin-activemq', version: "${bbossplugin_version}", transitive: true],
+              [group: 'mysql', name: 'mysql-connector-java', version: '8.0.28', transitive: false],
+              
+              [group: 'com.jfinal', name: 'jfinal-weixin', version: '1.9', transitive: false],
+              [group: 'com.jfinal', name: 'jfinal', version: '3.2', transitive: false],
+              [group: 'org.apache.commons', name: 'commons-lang3', version: '3.4', transitive: false],
+              [group: 'com.google.zxing', name: 'core', version: '3.2.1', transitive: false],
+              [group: 'com.google.zxing', name: 'javase', version: '3.2.1', transitive: false],
+              [group: 'com.jfinal', name: 'cos', version: '26Dec2008', transitive: false],
+              [group: 'commons-codec', name: 'commons-codec', version: '1.10', transitive: false],
+              [group: 'javax.mail', name: 'javax.mail-api', version: '1.5.4'],
+              [group: 'ant', name: 'ant', version: '1.7.0'],
+              [group: 'org.apache.poi', name: 'poi', version: '3.10.1'],
+              [group: 'org.apache.xmlbeans', name: 'xmlbeans', version: '2.6.0', transitive: false],
+              [group: 'net.sourceforge.jexcelapi', name: 'jxl', version: '2.6.12',transitive: false],
+              [group: 'net.sf.jxls', name: 'jxls-core', version: '1.0.6',transitive: false],
+              [group: 'net.sf.jxls', name: 'jxls-reader', version: '1.0.6',transitive: false],
+              [group: 'org.apache.commons', name: 'commons-jexl', version: '2.1.1',transitive: false],
+              [group: 'commons-digester', name: 'commons-digester', version: '1.8.1',transitive: false],
+		   fileTree(dir: '../lib', include: '**/*.jar'),    
+		)
+	    
+	   
+	}
+ 
+
+task releaseArchives(type: Zip,dependsOn:"war") {
+    //appendix = 'wrapper'
+   baseName='dbinit-system'
+   from '../dbinit-system'   
+}
+
+//webAppDirName = 'WebRoot'  

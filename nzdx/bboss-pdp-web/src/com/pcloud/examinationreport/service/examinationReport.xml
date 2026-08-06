@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<properties>
+	
+		<property name="addExaminationReport">
+		<![CDATA[
+			insert into t_exper_main (exper_id,user_id,cost_time,end_time,exper_name,exper_state,operat_socre,remark,start_time,total_socre,model_type)
+			values(#[experId],#[userId],#[costTime],#[endTime],#[experName],#[experState],#[operatSocre],#[remark],#[startTime],#[totalSocre],#[modelType])
+		]]>
+	</property>
+		<property name="deleteByKey">
+		<![CDATA[
+			delete from t_exper_main where exper_id = #[experId]
+		]]>
+	</property>
+		<property name="updateExaminationReport">
+		<![CDATA[
+			update t_exper_main set exper_id=#[experId],cost_time=#[costTime],end_time=#[endTime],exper_name=#[experName],exper_state=#[experState],operat_socre=#[operatSocre],remark=#[remark],start_time=#[startTime],total_socre=#[totalSocre] where exper_id=#[experId]
+		]]>
+	</property>
+		<property name="selectById">
+		<![CDATA[
+			select * from t_exper_main where exper_id=?
+		]]>
+	</property>
+	<property name="queryListExaminationReport">
+		<![CDATA[
+			select m.exper_id,m.exper_name,m.start_time,m.end_time,m.cost_time,m.operat_socre,m.total_socre,m.model_type
+			from t_exper_main m
+			where 1=1
+			#if($endTime && !$endTime.equals(""))
+				and m.end_time <= #[endTime]
+			#end
+
+			#if($startTime && !$startTime.equals(""))
+				and m.start_time >= #[startTime]
+			#end
+
+			#if($userId && !$userId.equals(""))
+				and m.user_id = #[userId]
+			#end
+			order by m.start_time desc
+			
+		]]>
+	</property>
+
+	<property name="queryListClass">
+		<![CDATA[
+				select * from t_exper_class order by class_code
+		]]>
+	</property>
+
+	<property name="queryListClassByUserId">
+		<![CDATA[
+
+			select c.class_id,c.class_name from  t_exper_class c join t_exper_members m on c.class_id = m.class_id where m.user_id = ? order by class_code
+		]]>
+	</property>
+
+	<property name="queryExperDoc">
+		<![CDATA[
+			select * from t_exper_doc where 1=1
+
+			#if($experId && !$experId.equals(""))
+				and exper_id =#[experId]
+			#end
+
+			#if($docType && !$docType.equals(""))
+				#if($docType.equals("0"))
+					and plan_doc is not null
+				#end
+				#if(!$docType.equals("1"))
+					and report_doc is not null
+				#end
+			#end
+		]]>
+	</property>
+
+
+	<property name="queryIsExperDoc">
+		<![CDATA[
+			select * from t_exper_doc where  plan_doc is not null and report_doc is not null
+
+			#if($experId && !$experId.equals(""))
+				and exper_id =#[experId]
+			#end
+		]]>
+	</property>
+
+	<property name="addExperDoc">
+		<![CDATA[
+			insert into t_exper_doc (exper_id,exper_name,group_id,last_modify_date,last_modifyer,plan_doc,plan_socre,remark,report_doc,report_socre) values(#[experId],#[experName],#[groupId],#[lastModifyDate],#[lastModifyer],#[planDoc],#[planSocre],#[remark],#[reportDoc],#[reportSocre])
+		]]>
+	</property>
+
+	<property name="updateExperDoc">
+		<![CDATA[
+			update t_exper_doc set exper_id=#[experId],exper_name=#[experName],group_id=#[groupId],last_modify_date=#[lastModifyDate],last_modifyer=#[lastModifyer],plan_doc=#[planDoc],plan_socre=#[planSocre],remark=#[remark],report_doc=#[reportDoc],report_socre=#[reportSocre] where exper_id=#[experId]
+		]]>
+	</property>
+
+	<property name="deleteExperDoc">
+		<![CDATA[
+			delete from t_exper_doc where exper_id= #[experId]
+		]]>
+	</property>
+
+	<property name="getExaminationReport">
+		<![CDATA[
+			select  m.*
+			from t_exper_main m
+			where 1=1
+			#if($experId && !$experId.equals(""))
+				and m.exper_id =#[experId]
+			#end
+		]]>
+	</property>
+
+	<property name="deleteExperPerson">
+		<![CDATA[
+			delete from t_exper_person where exper_id = ?
+		]]>
+	</property>
+
+	<property name="insertExperPerson">
+		<![CDATA[
+		INSERT INTO t_exper_person (exper_id,exper_name,operat_user,group_id,team_id,country_ab,start_time,end_time,cost_time,operat_score,report_score,total_socre,remark)
+		SELECT  a.exper_id,a.exper_name,a.user_account,a.group_id,a.team_id,a.country_ab,a.start_time,a.end_time,a.cost_time,a.operat_socre,a.report_socre,a.total_socre,a.remark FROM
+		  (select distinct n.*,m.user_account,d.report_socre from t_exper_members m
+			join t_exper_main n on m.in_group = n.group_id
+			left join t_exper_doc d on d.exper_id = n.exper_id
+		   where n.exper_id = #[experId]) a
+		]]>
+	</property>
+
+	</properties>

@@ -1,0 +1,38 @@
+<properties>
+
+	<!-- 
+		描述:初始化问题主表控制器QuestionController，并将所有关联的问题主表service注入到此控制器中。并以别名的形式定义好跳转页面。
+	    author:lijia
+		CopyRight:xbc
+		版本:v1.0 
+	    Date: 2019-06-22 14:10:54
+	-->
+
+	<property name="/question/*.page"
+		path:index="/jsp/question/main.jsp"
+		path:queryListInfoQuestions="/jsp/question/questionListInfo.jsp"
+		path:queryListQuestions="/jsp/question/questionList.jsp"
+		path:updateQuestion="/jsp/question/questionEdit.jsp"
+		path:addQuestion="/jsp/question/questionAdd.jsp"
+		path:getQuestion="/jsp/question/questionView.jsp"
+		f:questionService="attr:question.questionService"
+		class="com.pcloud.question.action.QuestionController" >
+	</property>
+		<property name="question.WSquestionService"
+		ws:servicePort="questionService" 
+		hessian:servicePort="questionService"
+		f:questionService="attr:question.questionService"
+		class="com.pcloud.question.ws.WSQuestionServiceImpl" >
+	</property>
+		<property name="question.questionService"
+		f:executor="attr:question.configsqlexecutor"
+		class="com.pcloud.question.service.QuestionServiceImpl"
+		/>
+	<property name="question.configsqlexecutor"		
+		class="com.frameworkset.common.poolman.ConfigSQLExecutor" >
+		<construction>
+			<property value="com/pcloud/question/service/question.xml"/>
+		</construction>
+	</property>
+	
+</properties>

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.openoffice:bootstrap-connector:0.1.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openoffice/bootstrap-connector/0.1.1/e9392d4720bf860bc1e5ee899261c3d2f722dfd7/bootstrap-connector-0.1.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openoffice/bootstrap-connector/0.1.1/97d1e8c7a7bd1448fbb8299ff6ca08bd282c45d2/bootstrap-connector-0.1.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

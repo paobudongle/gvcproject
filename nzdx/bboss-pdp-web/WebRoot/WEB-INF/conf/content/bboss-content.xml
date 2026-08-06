@@ -1,0 +1,36 @@
+<properties>
+
+	<!-- 
+		描述:初始化内容表控制器ContentController，并将所有关联的内容表service注入到此控制器中。并以别名的形式定义好跳转页面。
+	    author:lijia
+		CopyRight:xxx
+		版本:v1.0 
+	    Date: 2018-02-27 22:31:33
+	-->
+
+	<property name="/content/*.page"
+		path:index="/jsp/content/main.jsp"
+		path:queryListInfoContents="/jsp/content/contentListInfo.jsp"
+		path:queryListContents="/jsp/content/contentList.jsp"
+		path:updateContent="/jsp/content/contentEdit.jsp"
+		path:addContent="/jsp/content/contentAdd.jsp"
+		path:getContent="/jsp/content/contentView.jsp"
+		path:toMainReprint="/jsp/content/mainReprint.jsp"
+		path:reprintListInfo0 ="/jsp/content/reprintListInfo0.jsp"
+		path:reprintListInfo1 ="/jsp/content/reprintListInfo1.jsp"
+		f:contentService="attr:content.contentService"
+		f:channelService="attr:channel.channelService"
+		class="com.pcloud.content.action.ContentController" >
+	</property>
+		<property name="content.contentService"
+		f:executor="attr:content.configsqlexecutor"
+		class="com.pcloud.content.service.ContentServiceImpl"
+		/>
+	<property name="content.configsqlexecutor"		
+		class="com.frameworkset.common.poolman.ConfigSQLExecutor" >
+		<construction>
+			<property value="com/pcloud/content/service/content.xml"/>
+		</construction>
+	</property>
+	
+</properties>

@@ -1,0 +1,34 @@
+<properties>
+
+	<!-- 
+		描述:初始化考核报告控制器ExaminationReportController，并将所有关联的考核报告service注入到此控制器中。并以别名的形式定义好跳转页面。
+	    author:lijia
+		CopyRight:bxt
+		版本:v1.0 
+	    Date: 2019-10-26 16:43:47
+	-->
+
+	<property name="/examinationreport/*.page"
+		path:index="/jsp/examinationreport/main.jsp"
+		path:queryListInfoExaminationReports="/jsp/examinationreport/examinationReportListInfo.jsp"
+		path:queryListExaminationReports="/jsp/examinationreport/examinationReportList.jsp"
+		path:updateExaminationReport="/jsp/examinationreport/examinationReportEdit.jsp"
+		path:addExaminationReport="/jsp/examinationreport/examinationReportAdd.jsp"
+		path:getExaminationReport="/jsp/examinationreport/examinationReportView.jsp"
+		path:toUploadFile="/jsp/examinationreport/uploadFile.jsp"
+		path:toScore="/jsp/examinationreport/examinationReportScore.jsp"
+		f:examinationReportService="attr:examinationreport.examinationReportService"
+		class="com.pcloud.examinationreport.action.ExaminationReportController" >
+	</property>
+		<property name="examinationreport.examinationReportService"
+		f:executor="attr:examinationreport.configsqlexecutor"
+		class="com.pcloud.examinationreport.service.ExaminationReportServiceImpl"
+		/>
+	<property name="examinationreport.configsqlexecutor"		
+		class="com.frameworkset.common.poolman.ConfigSQLExecutor" >
+		<construction>
+			<property value="com/pcloud/examinationreport/service/examinationReport.xml"/>
+		</construction>
+	</property>
+	
+</properties>

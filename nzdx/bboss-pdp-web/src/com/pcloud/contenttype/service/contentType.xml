@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+**
+ *  Copyright 2008-2010 biaoping.yin
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ *
+ * Title: contentType.xml
+ * Description: 内容分类sql配置文件 
+ * Company:xxx
+ * Copyright (c) 2015
+ * @Date 2018-03-04 17:50:51
+ * @author lijia
+ * @version v1.0 
+ **
+ -->
+<properties>
+	
+		<property name="addContentType">
+		<![CDATA[
+			insert into t_cms_content_type (content_type_id,content_type_name,create_date,creater,del_flag,has_img,img_height,img_width,is_display,last_modifier,last_modify_date) values(#[contentTypeId],#[contentTypeName],#[createDate],#[creater],#[delFlag],#[hasImg],#[imgHeight],#[imgWidth],#[isDisplay],#[lastModifier],#[lastModifyDate])
+		]]>
+	</property>
+		<property name="deleteByKey">
+		<![CDATA[
+			delete from t_cms_content_type where content_type_id=?
+		]]>
+	</property>
+		<property name="updateContentType">
+		<![CDATA[
+			update t_cms_content_type set content_type_id=#[contentTypeId],content_type_name=#[contentTypeName],create_date=#[createDate],creater=#[creater],del_flag=#[delFlag],has_img=#[hasImg],img_height=#[imgHeight],img_width=#[imgWidth],is_display=#[isDisplay],last_modifier=#[lastModifier],last_modify_date=#[lastModifyDate] where content_type_id=#[contentTypeId]
+		]]>
+	</property>
+		<property name="selectById">
+		<![CDATA[
+			select * from t_cms_content_type where content_type_id=?
+		]]>
+	</property>
+		<property name="queryListContentType">
+		<![CDATA[
+			select * from t_cms_content_type where 1=1
+						#if($contentTypeName && !$contentTypeName.equals(""))
+				and content_type_name like #[contentTypeName]		
+			#end
+			
+		]]>
+	</property>
+	</properties>

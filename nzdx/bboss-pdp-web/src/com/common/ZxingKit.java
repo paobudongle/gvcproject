@@ -1,0 +1,212 @@
+
+package com.common;
+
+import com.google.zxing.*;
+import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
+import com.google.zxing.client.j2se.MatrixToImageConfig;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.common.HybridBinarizer;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import com.jfinal.log.Log;
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Map;
+
+/**
+ * google 开源图形码工具Zxing使用
+ */
+public class ZxingKit {
+	private static Log log = Log.getLog(ZxingKit.class.getSimpleName());
+
+	static BASE64Encoder encoder = new sun.misc.BASE64Encoder();
+	static BASE64Decoder decoder = new sun.misc.BASE64Decoder();
+
+	/**
+	 * Zxing图形码生成工具
+	 *
+	 * @param contents
+	 *            内容
+	 * @param barcodeFormat
+	 *            BarcodeFormat对象
+	 * @param format
+	 *            图片格式，可选[png,jpg,bmp]
+	 * @param width
+	 *            宽
+	 * @param height
+	 *            高
+	 * @param margin
+	 *            边框间距px
+	 * @param saveImgFilePath
+	 *            存储图片的完整位置，包含文件名
+	 * @return
+	 */
+	public static Boolean encode(String contents, BarcodeFormat barcodeFormat, Integer margin,
+			ErrorCorrectionLevel errorLevel, String format, int width, int height, String saveImgFilePath) {
+		Boolean bool = false;
+		BufferedImage bufImg;
+		Map<EncodeHintType, Object> hints = new HashMap<EncodeHintType, Object>();
+		// 指定纠错等级
+		hints.put(EncodeHintType.ERROR_CORRECTION, errorLevel);
+		hints.put(EncodeHintType.MARGIN, margin);
+		hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
+		try {
+			// contents = new String(contents.getBytes("UTF-8"), "ISO-8859-1");
+			BitMatrix bitMatrix = new MultiFormatWriter().encode(contents, barcodeFormat, width, height, hints);
+			MatrixToImageConfig config = new MatrixToImageConfig(0xFF000001, 0xFFFFFFFF);
+			bufImg = MatrixToImageWriter.toBufferedImage(bitMatrix, config);
+			bool = writeToFile(bufImg, format, saveImgFilePath);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return bool;
+	}
+
+
+	public static String encode(String contents, BarcodeFormat barcodeFormat, Integer margin,
+								 ErrorCorrectionLevel errorLevel, String format, int width, int height) {
+		String base64 ="";
+		BufferedImage bufImg;
+		Map<EncodeHintType, Object> hints = new HashMap<EncodeHintType, Object>();
+		// 指定纠错等级
+		hints.put(EncodeHintType.ERROR_CORRECTION, errorLevel);
+		hints.put(EncodeHintType.MARGIN, margin);
+		hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
+		try {
+			// contents = new String(contents.getBytes("UTF-8"), "ISO-8859-1");
+			BitMatrix bitMatrix = new MultiFormatWriter().encode(contents, barcodeFormat, width, height, hints);
+			MatrixToImageConfig config = new MatrixToImageConfig(0xFF000001, 0xFFFFFFFF);
+			bufImg = MatrixToImageWriter.toBufferedImage(bitMatrix, config);
+			base64 = getImageBinary(bufImg);
+		} catch (Exception e) {
+			return "";
+			//e.printStackTrace();
+		}
+		return base64;
+	}
+
+	/**
+	 * @param srcImgFilePath
+	 *            要解码的图片地址
+	 * @return
+	 */
+	@SuppressWarnings("finally")
+	public static Result decode(String srcImgFilePath) {
+		Result result = null;
+		BufferedImage image;
+		try {
+			File srcFile = new File(srcImgFilePath);
+			image = ImageIO.read(srcFile);
+			if (null != image) {
+				LuminanceSource source = new BufferedImageLuminanceSource(image);
+				BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
+
+				Hashtable<DecodeHintType, String> hints = new Hashtable<DecodeHintType, String>();
+				hints.put(DecodeHintType.CHARACTER_SET, "UTF-8");
+				result = new MultiFormatReader().decode(bitmap, hints);
+			} else {
+				log.debug("Could not decode image.");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			return result;
+		}
+	}
+
+	/**
+	 * 将BufferedImage对象写入文件
+	 *
+	 * @param bufImg
+	 *            BufferedImage对象
+	 * @param format
+	 *            图片格式，可选[png,jpg,bmp]
+	 * @param saveImgFilePath
+	 *            存储图片的完整位置，包含文件名
+	 * @return
+	 */
+	@SuppressWarnings("finally")
+	public static Boolean writeToFile(BufferedImage bufImg, String format, String saveImgFilePath) {
+		Boolean bool = false;
+		try {
+			bool = ImageIO.write(bufImg, format, new File(saveImgFilePath));
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			return bool;
+		}
+	}
+
+	static String getImageBinary(BufferedImage bi) {
+		//File f = new File("d://in.jpg");
+		try {
+			//BufferedImage bi = ImageIO.read(f);
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			ImageIO.write(bi, "jpg", baos);
+			byte[] bytes = baos.toByteArray();
+
+			return encoder.encodeBuffer(bytes).trim();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	static void base64StringToImage(String base64String) {
+		try {
+			byte[] bytes1 = decoder.decodeBuffer(base64String);
+			ByteArrayInputStream bais = new ByteArrayInputStream(bytes1);
+			BufferedImage bi1 = ImageIO.read(bais);
+			File f1 = new File("d://out.jpg");
+			ImageIO.write(bi1, "jpg", f1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void base64StringToImage(String base64String, String pathName, String fileName) {
+		try {
+			/*byte[] bytes1 = decoder.decodeBuffer(base64String);
+			ByteArrayInputStream bais = new ByteArrayInputStream(bytes1);
+			BufferedImage bi1 = ImageIO.read(bais);*/
+
+			File dirPath = new File(pathName);
+
+			if (!dirPath.exists()) {
+				dirPath.mkdirs();
+			}
+			File f1 = new File(dirPath +"/"+ fileName);
+
+			BASE64Decoder decoder = new BASE64Decoder();
+			FileOutputStream write = new FileOutputStream(f1);
+			byte[] decoderBytes = decoder.decodeBuffer(base64String);
+			write.write(decoderBytes);
+			write.close();
+
+
+			//ImageIO.write(bi1, "jpg", f1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void main(String[] args) {
+		String saveImgFilePath = "D://zxing.png";
+		Boolean encode = encode("我是Javen205", BarcodeFormat.QR_CODE, 3, ErrorCorrectionLevel.H, "png", 200, 200,
+				saveImgFilePath);
+		if (encode) {
+			Result result = decode(saveImgFilePath);
+			String text = result.getText();
+			System.out.println(text);
+		}
+	}
+}

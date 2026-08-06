@@ -1,0 +1,48 @@
+sourceSets {
+    
+    main {
+        java {
+            srcDir 'src'
+        }
+        resources {
+            srcDir 'resources'
+            srcDir 'src'  exclude '**/*.java'
+        }
+        
+    }
+     
+}
+
+dependencies {
+	    compile project(':bboss-pdp-dict')
+	 	compile project(':bboss-pdp-auth')
+	 	compile project(':bboss-pdp-fastwx')
+	   compile(
+            [group: 'commons-io', name: 'commons-io', version: '2.0', transitive: false],
+            [group: 'commons-beanutils', name: 'commons-beanutils', version: '1.8.0', transitive: false],
+             [group: 'org.apache.poi', name: 'poi', version: '3.10-FINAL', transitive: false],
+            [group: 'org.apache.poi', name: 'poi-excelant', version: '3.10-FINAL', transitive: false],
+            [group: 'org.apache.poi', name: 'poi-ooxml', version: '3.10-FINAL', transitive: false],
+            [group: 'org.apache.poi', name: 'poi-ooxml-schemas', version: '3.10-FINAL', transitive: false],
+            [group: 'org.apache.poi', name: 'poi-scratchpad', version: '3.10-FINAL', transitive: false],
+           
+           
+           [group: 'com.bbossgroups.activiti', name: 'activiti-bpmn-converter', version: "${WF_VERSION}", transitive: false],
+            [group: 'com.bbossgroups.activiti', name: 'activiti-bpmn-layout', version: "${WF_VERSION}", transitive: false],
+            [group: 'com.bbossgroups.activiti', name: 'activiti-bpmn-model', version: "${WF_VERSION}", transitive: false],
+            [group: 'com.bbossgroups.activiti', name: 'activiti-engine', version: "${WF_VERSION}", transitive: false],
+            [group: 'com.belerweb', name: 'pinyin4j', version: "2.5.1", transitive: false],
+	   )
+	  
+	   compileOnly (            
+	          
+	            [group: 'javax.servlet', name: 'javax.servlet-api', version: "3.0.1", transitive: false],
+	            //[group: 'javax.servlet', name: 'jsp-api', version: '2.0', transitive: false],
+	            [group: 'javax.servlet.jsp', name: 'javax.servlet.jsp-api', version: '2.3.1', transitive: false],
+	          
+	    	)
+	    
+	   
+	}
+
+ 

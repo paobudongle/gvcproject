@@ -1,0 +1,52 @@
+<properties>
+	<!-- 
+	author：biaoping.yin
+    CopyRight：
+    Date:2016.10.25
+	-->
+	<property name="/admin/*.page"	
+	path:iframe="/jsp/iframe.jsp" 
+	path:index_admin_1="/jsp/index_admin1.jsp"
+	path:content_admin_1="/jsp/main.jsp"
+	path:content_admin_3="/jsp/dashboard3_main.jsp"
+	
+	class="org.frameworkset.platform.desktop.action.AdminController" />
+	
+	
+	<property name="security.authorization.authorizationTable"		
+		class="org.frameworkset.platform.security.authorization.AppAuthorizationTable" />
+	<property name="security.authorization.permissionRoleMap"		
+		class="org.frameworkset.platform.security.authorization.AppPermissionRoleMap" />
+	
+	<property name="security.appPermissionModule"
+			  f:organizationService="attr:org.smOrganizationService"
+			  f:userService="attr:user.smUserService"
+		class="org.frameworkset.platform.security.AppPermissionModule"
+	/>
+		
+	<property name="/menu/*.page"
+		f:roleService="attr:role.roleService"
+		path:grantedcolumns="/jsp/sysmanager/menu/grantedcolumns.jsp"
+		path:grantedcolumnsListInfo="/jsp/sysmanager/menu/grantedcolumnsListInfo.jsp"
+		path:columnAuthTree="/jsp/sysmanager/menu/columnAuthTree.jsp"
+		path:main="/jsp/sysmanager/menu/main.jsp"
+		path:system="/jsp/sysmanager/menu/system.jsp"
+		path:menuitem="/jsp/sysmanager/menu/menuitem.jsp"
+		class="org.frameworkset.platform.desktop.action.MenuController" />
+	<!--<property name="/commonuser/*.page"
+			  ws:servicePort="commonuserService"
+			  hessian:servicePort="commonuserService"
+			  f:commonUserManager="attr:commonuser.service"
+			  class="com.frameworkset.platform.security.service.action.CommonUserControl" >
+	</property>-->
+	<property name="commonuser.service"
+			  f:executor="attr:commonuser.configsqlexecutor"
+			  class="com.frameworkset.platform.security.service.CommonUserManger"
+	/>
+	<property name="commonuser.configsqlexecutor"
+			  class="com.frameworkset.common.poolman.ConfigSQLExecutor" >
+		<construction>
+			<property value="com/frameworkset/platform/security/service/commonusers.xml"/>
+		</construction>
+	</property>
+</properties>

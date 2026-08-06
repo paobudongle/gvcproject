@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+**
+ *  Copyright 2008-2010 biaoping.yin
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ *
+ * Title: smUser.xml
+ * Description: 用户管理管理sql配置文件 
+ * Company:bboss
+ * Copyright (c) 2015
+ * @Date 2016-11-29 21:14:30
+ * @author yinbp
+ * @version v1.0 
+ **
+ -->
+<properties>
+	
+	<property name="checkworknumberexist">
+		<![CDATA[ 
+			select count(user_id) from td_sm_user where USER_WORKNUMBER = ? 
+		]]>
+	</property>
+	<property name="checkworknumberexistofuser">
+		<![CDATA[ 
+			select count(user_id) from td_sm_user where USER_WORKNUMBER = ?  and user_id <>?
+		]]>
+	</property>
+	<property name="getWorknumber">
+		<![CDATA[ 
+			select USER_WORKNUMBER from td_sm_user where  user_id =?
+		]]>
+	</property>
+	
+	
+	
+	<property name="genworknumber">
+		<![CDATA[ 
+			select max(USER_WORKNUMBER) from td_sm_user
+		]]>
+	</property>
+	<property name="checkuserexist">
+		<![CDATA[ 
+			select count(user_id) from td_sm_user where USER_NAME = ? 
+		]]>
+	</property>
+	<property name="queryOrgmanagerRoleIDs">
+		<![CDATA[ 
+			select role_id from td_sm_role where role_name in ('orgmanager','orgmanagerroletemplate')
+		]]>
+	</property>
+	<property name="removeUserRoles">
+		<![CDATA[ 
+			delete from td_sm_userrole where user_id = ? and role_id not in (@{queryOrgmanagerRoleIDs})
+		]]>
+	</property>
+	<property name="deleteRoleUsersOfUsers">
+		<![CDATA[ 
+			delete from td_sm_userrole where user_id = ? 
+		]]>
+	</property>
+	<property name="deleteRoleUsersOfRoles">
+		<![CDATA[ 
+			delete from td_sm_userrole where role_id = ? 
+		]]>
+	</property>
+	<property name="getrolename">
+		<![CDATA[
+			select role_name from td_sm_role where role_id = ? 
+		]]>
+	</property>
+	
+	<property name="deleteRoleUsers">
+		<![CDATA[ 
+			delete from td_sm_userrole where user_id = #[userId] and role_id = #[roleId] and role_id not in(select role_id from td_sm_role where role_name in ('orgmanager','orgmanagerroletemplate'))
+		]]>
+	</property>
+	
+	<property name="existUserRoles">
+		<![CDATA[
+			select count(1) from td_sm_userrole where user_id = ? and role_id =?
+		]]>
+	</property>
+	
+	<property name="saveUserRoles">
+		<![CDATA[
+			insert into td_sm_userrole(user_id ,role_id ) values(#[userId],#[roleId])
+		]]>
+	</property>
+		<property name="addSmUser">
+		<![CDATA[
+			insert into td_sm_user (USER_ID,CERT_SN,DEPART_ID,DREDGE_TIME,ISTAXMANAGER,LASTLOGIN_DATE,LOGON_IP,Password_DualTime,PASSWORD_UPDATETIME,PAST_TIME,POLITICS,REMARK1,REMARK2,REMARK3,REMARK4,REMARK5,update_time,USER_ADDRESS,USER_BIRTHDAY,USER_EMAIL,USER_FAX,USER_HOMETEL,USER_IDCARD,USER_ISVALID,USER_LOGINCOUNT,USER_MOBILETEL1,USER_MOBILETEL2,USER_NAME,USER_OICQ,USER_PASSWORD,USER_PINYIN,USER_POSTALCODE,USER_REALNAME,USER_REGDATE,USER_SEX,USER_SN,USER_TYPE,USER_WORKNUMBER,USER_WORKTEL,WORKLENGTH,USER_JOB) values(#[userId],#[certSn],#[departId],#[dredgeTime],#[istaxmanager],#[lastloginDate],#[logonIp],#[passwordDualtime],#[passwordUpdatetime],#[pastTime],#[politics],#[remark1],#[remark2],#[remark3],#[remark4],#[remark5],#[updateTime],#[userAddress],#[userBirthday],#[userEmail],#[userFax],#[userHometel],#[userIdcard],#[userIsvalid],#[userLogincount],#[userMobiletel1],#[userMobiletel2],#[userName],#[userOicq],#[userPassword],#[userPinyin],#[userPostalcode],#[userRealname],#[userRegdate],#[userSex],#[userSn],#[userType],#[userWorknumber],#[userWorktel],#[worklength],#[userJob])
+		]]>
+	</property>
+		<property name="deleteByKey">
+		<![CDATA[
+			delete from td_sm_user where USER_ID=?
+		]]>
+	</property>
+	
+	<property name="logicDeleteUsers">
+		<![CDATA[
+			update td_sm_user set USER_ISVALID=0  where USER_ID=?
+		]]>
+	</property>
+	<property name="updateUserStatus">
+		<![CDATA[
+			update td_sm_user set USER_ISVALID=?  where USER_ID=?
+		]]>
+	</property>
+		<property name="updateSmUser">
+		<![CDATA[
+			update td_sm_user set USER_ID=#[userId],CERT_SN=#[certSn],DEPART_ID=#[departId],DREDGE_TIME=#[dredgeTime],ISTAXMANAGER=#[istaxmanager],LASTLOGIN_DATE=#[lastloginDate],LOGON_IP=#[logonIp],Password_DualTime=#[passwordDualtime],PASSWORD_UPDATETIME=#[passwordUpdatetime],PAST_TIME=#[pastTime],POLITICS=#[politics],REMARK1=#[remark1],REMARK2=#[remark2],REMARK3=#[remark3],REMARK4=#[remark4],REMARK5=#[remark5],update_time=#[updateTime],USER_ADDRESS=#[userAddress],USER_BIRTHDAY=#[userBirthday],USER_EMAIL=#[userEmail],USER_FAX=#[userFax],USER_HOMETEL=#[userHometel],USER_IDCARD=#[userIdcard],USER_ISVALID=#[userIsvalid],USER_LOGINCOUNT=#[userLogincount],USER_MOBILETEL1=#[userMobiletel1],USER_MOBILETEL2=#[userMobiletel2],USER_NAME=#[userName],USER_OICQ=#[userOicq],USER_PINYIN=#[userPinyin],USER_POSTALCODE=#[userPostalcode],USER_REALNAME=#[userRealname],USER_REGDATE=#[userRegdate],USER_SEX=#[userSex],USER_SN=#[userSn],USER_TYPE=#[userType],USER_WORKNUMBER=#[userWorknumber],USER_WORKTEL=#[userWorktel],WORKLENGTH=#[worklength],USER_JOB=#[userJob] where USER_ID=#[userId]
+		]]>
+	</property>
+		<property name="selectById">
+		<![CDATA[
+			select * from td_sm_user where USER_ID=?
+		]]>
+	</property>
+	
+	<property name="getSmUserByNAMECNName">
+		<![CDATA[
+			select u.*,o.org_tree_level as departTreeLevel,o.org_name as departName,bu.user_id as leaderid,bu.user_name as leaderaccount,bu.user_realname as leadername from td_sm_user u 
+			 left join td_sm_organization o on u.depart_Id = o.org_id 
+			 left join td_sm_user bu on bu.user_id = o.orgleader
+			  where u.USER_NAME =? or u.USER_WORKNUMBER = ? or u.user_email = ? or u.USER_MOBILETEL1 = ? or u.USER_REALNAME=?
+		]]>
+	</property>
+	<property name="getUserByWorknumber">
+		<![CDATA[
+			select u.*,o.org_tree_level as departTreeLevel,o.org_name as departName,bu.user_id as leaderid,bu.user_name as leaderaccount,bu.user_realname as leadername from td_sm_user u
+			 left join td_sm_organization o on u.depart_Id = o.org_id
+			 left join td_sm_user bu on bu.user_id = o.orgleader
+			  where  u.USER_WORKNUMBER = ?
+		]]>
+	</property>
+
+	<property name="getSmUserByName">
+		<![CDATA[
+			select u.*,o.org_tree_level as departTreeLevel,o.org_name as departName,bu.user_id as leaderid,bu.user_name as leaderaccount,bu.user_realname as leadername from td_sm_user u 
+			 left join td_sm_organization o on u.depart_Id = o.org_id 
+			 left join td_sm_user bu on bu.user_id = o.orgleader
+			  where u.USER_NAME =? 
+		]]>
+	</property>
+	<property name="getOrgLeader">
+		<![CDATA[
+			select bu.user_id as leaderid,bu.user_name as leaderaccount,bu.user_realname as leadername from td_sm_organization o,td_sm_user bu 			 
+			  where bu.user_id = o.ORGLEADER  and o.org_id=?
+		]]>
+	</property>
+	<property name="selectMaxSNofdepart">
+		<![CDATA[
+			select max(USER_SN)+1 from td_sm_user where DEPART_ID=?
+		]]>
+	</property>
+	<property name="queryListInfoSmUsers">
+		<![CDATA[
+			select u.*,o.org_name as departName from td_sm_user u left join td_sm_organization o on u.depart_id = o.org_id where 1=1 
+			#if( !($recursive  && $recursive.equals("3")) )			
+				#if(!$departId.equals("lisan"))
+					#if( !$recursive  || $recursive.equals("0") || $recursive.equals("") )
+						and depart_id=#[departId]
+					#elseif($recursive.equals("1"))
+						and (o.ORG_TREE_LEVEL like #[orgtreelevelLike] or o.ORG_TREE_LEVEL=#[orgtreelevel])
+					#end
+				#else
+					and (depart_id is null or depart_id ='')
+				#end	
+			#end
+			#if($userAttr && !$userAttr.equals(""))
+				and (USER_NAME like #[userAttr]	or USER_REALNAME like #[userAttr] or USER_MOBILETEL1 like #[userAttr]	or USER_WORKNUMBER like #[userAttr] or USER_IDCARD like #[userIdcard]	)	
+			#end
+			 
+			#if($chooseuser)
+				and USER_ISVALID = 2
+			#elseif($userIsvalid )
+					and USER_ISVALID=#[userIsvalid]
+			#end
+			 
+			 
+			#if($userSex && !$userSex.equals(""))
+				and USER_SEX =#[userSex]		
+			#end
+			#if($userType && !$userType.equals(""))
+				and USER_TYPE =#[userType]		
+			#end
+			 
+			#if($sortKey && !$sortKey.equals(""))
+				order by $sortKey #if($sortDesc)desc#else asc#end
+			#else
+			 	order by user_sn
+			#end
+
+		]]>
+	</property>
+	<property name="getDepartUsers">
+		<![CDATA[
+			select u.*,o.org_name as departName from td_sm_user u left join td_sm_organization o on u.depart_id = o.org_id where 1=1 
+			#if( !($recursive  && $recursive.equals("3")) )			
+				#if(!$departId.equals("lisan"))
+					#if( !$recursive  || $recursive.equals("0") || $recursive.equals("") )
+						and depart_id=#[departId]
+					#elseif($recursive.equals("1"))
+						and (o.ORG_TREE_LEVEL like #[orgtreelevelLike] or o.ORG_TREE_LEVEL=#[orgtreelevel])
+					#end
+				#else
+					and (depart_id is null or depart_id ='')
+				#end	
+			#end
+			#if($userIdcard && !$userIdcard.equals(""))
+				and USER_IDCARD =#[userIdcard]		
+			#end
+			#if($chooseuser)
+				and USER_ISVALID = 2
+			#elseif($userIsvalid )
+					and USER_ISVALID=#[userIsvalid]
+			#end
+			#if($userMobiletel1 && !$userMobiletel1.equals(""))
+				and USER_MOBILETEL1 like #[userMobiletel1]		
+			#end
+			#if($userName && !$userName.equals(""))
+				and USER_NAME like #[userName]		
+			#end
+			#if($userRealname && !$userRealname.equals(""))
+				and USER_REALNAME like #[userRealname]		
+			#end
+			#if($userSex && !$userSex.equals(""))
+				and USER_SEX =#[userSex]		
+			#end
+			#if($userType && !$userType.equals(""))
+				and USER_TYPE =#[userType]		
+			#end
+			#if($userWorknumber && !$userWorknumber.equals(""))
+				and USER_WORKNUMBER like #[userWorknumber]		
+			#end
+			#if($sortKey && !$sortKey.equals(""))
+				order by $sortKey #if($sortDesc)desc#else asc#end
+			#else
+			 	order by user_sn
+			#end
+
+		]]>
+	</property>
+	
+	<property name="getAllDepartUsers">
+		<![CDATA[
+			select u.*,o.org_name as departName from td_sm_user u  join td_sm_organization o on u.depart_id = o.org_id where   u.depart_id=? order by user_sn
+		]]>
+	</property>
+	<property name="getAllLisanUsers">
+		<![CDATA[
+			select u.*,'待岗' as departName from td_sm_user u where  depart_id is null or depart_id ='' order by user_sn
+		]]>
+	</property>
+		<property name="queryListSmUser">
+		<![CDATA[
+			select * from td_sm_user where 1=1
+						#if($userIdcard && !$userIdcard.equals(""))
+				and USER_IDCARD =#[userIdcard]		
+			#end
+												#if($userIsvalid && $userIsvalid > 0)
+					and USER_ISVALID=#[userIsvalid]
+				#end
+											#if($userMobiletel1 && !$userMobiletel1.equals(""))
+				and USER_MOBILETEL1 like #[userMobiletel1]		
+			#end
+								#if($userName && !$userName.equals(""))
+				and USER_NAME like #[userName]		
+			#end
+								#if($userRealname && !$userRealname.equals(""))
+				and USER_REALNAME like #[userRealname]		
+			#end
+								#if($userSex && !$userSex.equals(""))
+				and USER_SEX =#[userSex]		
+			#end
+								#if($userType && !$userType.equals(""))
+				and USER_TYPE =#[userType]		
+			#end
+								#if($userWorknumber && !$userWorknumber.equals(""))
+				and USER_WORKNUMBER like #[userWorknumber]		
+			#end
+			#if($sortKey && !$sortKey.equals(""))
+		order by $sortKey #if($sortDesc)desc#else asc#end
+	#end
+
+		]]>
+	</property>
+	
+	<property name="resetpassword">
+		<![CDATA[
+			update td_sm_user set user_password=? where user_id=?
+		]]>
+	</property>
+	<property name="oldPasswordright">
+		<![CDATA[
+			select count(user_id) as ucount from td_sm_user where  user_id=? and user_password=? 
+		]]>
+	</property>
+	<property name="saveSmUsersOrder">
+		<![CDATA[
+			update td_sm_user set user_sn=#[userSn] where  user_id=#[userId]
+		]]>
+	</property>
+	<property name="saveMoveusers">
+		<![CDATA[
+			update td_sm_user set depart_id=#[todepartId] where  user_id=#[userId]
+		]]>
+	</property>
+	<property name="moveuserstolisan">
+		<![CDATA[
+			update td_sm_user set depart_id=null where  user_id=?
+		]]>
+	</property>
+	<property name="getChargeOrgId">
+		<![CDATA[
+			select depart_id from td_sm_user  where  USER_NAME=?
+		]]>
+	</property>
+	
+	<property name="getMoveinUsers">
+		<![CDATA[
+			
+			select u.*,o.org_name as departName from td_sm_user u left join td_sm_organization o on u.depart_id = o.org_id where 1=1 
+			#if(!$departId.equals("lisan"))
+				#if( !$recursive  || $recursive.equals("0") || $recursive.equals("") )
+					and depart_id=#[fromDepartId]
+				#elseif($recursive.equals("1"))
+					and (o.ORG_TREE_LEVEL like #[orgtreelevelLike] or o.ORG_TREE_LEVEL=#[orgtreelevel])
+				#end
+			#else
+				and (depart_id is null or depart_id ='')
+			#end	
+			#if($userIsvalid && $userIsvalid != -1)
+					and USER_ISVALID=#[userIsvalid]
+			#end
+			#if($userAttr && !$userAttr.equals(""))
+				and (USER_NAME like #[userAttr]	or USER_REALNAME like #[userAttr] or USER_MOBILETEL1 like #[userAttr]	or USER_WORKNUMBER like #[userAttr]	)	
+			#end
+			order by USER_NAME,user_sn 
+			
+
+		]]>
+	</property>
+	
+	<property name="queryUsers">
+		<![CDATA[
+			
+			select u.*,o.org_name as departName from td_sm_user u left join td_sm_organization o on u.depart_id = o.org_id where 1=1 
+			
+			#if($userIsvalid && $userIsvalid != -1)
+					and USER_ISVALID=#[userIsvalid]
+			#end
+			#if($userAttr && !$userAttr.equals(""))
+				and (USER_NAME like #[userAttr]	or USER_REALNAME like #[userAttr] or USER_MOBILETEL1 like #[userAttr]	or USER_WORKNUMBER like #[userAttr]	)	
+			#end
+			order by USER_NAME,user_sn 
+			
+
+		]]>
+	</property>
+	
+	
+	
+</properties>

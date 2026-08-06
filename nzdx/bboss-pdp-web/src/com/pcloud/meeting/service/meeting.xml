@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+**
+ *  Copyright 2008-2010 biaoping.yin
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ *
+ * Title: meeting.xml
+ * Description: 会议管理sql配置文件 
+ * Company:bc
+ * Copyright (c) 2015
+ * @Date 2018-05-19 12:04:43
+ * @author lijia
+ * @version v1.0 
+ **
+ -->
+<properties>
+	
+		<property name="addMeeting">
+		<![CDATA[
+			insert into  t_meeting_content (meeting_id,attach_id,create_date,creater,del_flag,last_modifier,last_modify_date,meeting_address,meeting_content,meeting_start_data,meeting_end_data,meeting_status,organizer,release_date,title) values(#[meetingId],#[attachId],#[createDate],#[creater],#[delFlag],#[lastModifier],#[lastModifyDate],#[meetingAddress],#[meetingContent],#[meetingStartData],#[meetingEndData],#[meetingStatus],#[organizer],#[releaseDate],#[title])
+		]]>
+	</property>
+		<property name="deleteByKey">
+		<![CDATA[
+			delete from t_meeting_content where meeting_id=?
+		]]>
+	</property>
+		<property name="updateMeeting">
+		<![CDATA[
+			update t_meeting_content set meeting_id=#[meetingId],attach_id=#[attachId],create_date=#[createDate],creater=#[creater],del_flag=#[delFlag],last_modifier=#[lastModifier],last_modify_date=#[lastModifyDate],meeting_address=#[meetingAddress],meeting_content=#[meetingContent],meeting_Start_Data=#[meetingStartData],meeting_end_Data=#[meetingEndData],meeting_status=#[meetingStatus],organizer=#[organizer],release_date=#[releaseDate],title=#[title] where meeting_id=#[meetingId]
+		]]>
+	</property>
+		<property name="selectById">
+		<![CDATA[
+			select * from t_meeting_content where meeting_id=?
+		]]>
+	</property>
+		<property name="queryListMeeting">
+		<![CDATA[
+			select * from t_meeting_content where 1=1
+
+			#if($meetingAddress && !$meetingAddress.equals(""))
+				and meeting_address like #[meetingAddress]		
+			#end
+			#if($title && !$title.equals(""))
+				and title like #[title]		
+			#end
+
+			#if($searchword && !$searchword.equals(""))
+				and (title like #[searchword] OR meeting_address like #[searchword])
+			#end
+
+			order by release_Date desc
+			
+		]]>
+	</property>
+
+	<property name="queryListInfoMeetingByTopTen">
+		<![CDATA[
+			select a.* from t_meeting_content a
+			where a.meeting_status ='1'   order by a.release_date desc  limit 9
+		]]>
+	</property>
+
+</properties>

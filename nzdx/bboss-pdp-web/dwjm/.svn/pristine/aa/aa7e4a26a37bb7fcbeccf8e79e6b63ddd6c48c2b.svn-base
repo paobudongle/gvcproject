@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.jfree:swtgraphics2d:1.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jfree/swtgraphics2d/1.0/7dfb0b3bc496546a97d03ba3c4b9f5465bf2db4a/swtgraphics2d-1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jfree/swtgraphics2d/1.0/8abb55c432843f8faac498737952bfafe10166d7/swtgraphics2d-1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

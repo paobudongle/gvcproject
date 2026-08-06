@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":bboss-pdp-auth" external.linked.project.path="$MODULE_DIR$/../../../bboss-pdp-auth" external.root.project.path="$MODULE_DIR$/../../.." external.system.id="GRADLE" external.system.module.group="com.bbossgroups.pdp" external.system.module.version="5.0.9" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../bboss-pdp-auth">
+      <excludeFolder url="file://$MODULE_DIR$/../../../bboss-pdp-auth/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../bboss-pdp-auth/build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../bboss-pdp-auth/out" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

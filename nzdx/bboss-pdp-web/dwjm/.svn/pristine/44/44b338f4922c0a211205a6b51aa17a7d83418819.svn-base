@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.bbossgroups.plugins:bboss-elasticsearch-rest-booter:5.1.7">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.bbossgroups.plugins/bboss-elasticsearch-rest-booter/5.1.7/db63ad5aff2fc5390c2d73f07658610b90e61447/bboss-elasticsearch-rest-booter-5.1.7.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.bbossgroups.plugins/bboss-elasticsearch-rest-booter/5.1.7/663eeca66cac4dc7b44df38474f87fc29e84c1f7/bboss-elasticsearch-rest-booter-5.1.7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

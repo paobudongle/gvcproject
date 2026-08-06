@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+**
+ *  Copyright 2008-2010 biaoping.yin
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ *
+ * Title: serialNumber.xml
+ * Description: 序列号sql配置文件 
+ * Company:xx
+ * Copyright (c) 2015
+ * @Date 2018-02-23 09:05:22
+ * @author lijia
+ * @version v1.0 
+ **
+ -->
+<properties>
+	
+		<property name="addSerialNumber">
+		<![CDATA[
+			insert into ta_bz_serial_number (SN,ACTIVATE_STATUS,CREATE_TIME,ORDER_ID,USER_ID,VALID_END_TIME,VALID_START_TIME,ACTIVATE_CODE) values(#[sn],#[activateStatus],#[createTime],#[orderId],#[userId],#[validEndTime],#[validStartTime],#[activateCode])
+		]]>
+	</property>
+		<property name="deleteByKey">
+		<![CDATA[
+			delete from ta_bz_serial_number where SN=?
+		]]>
+	</property>
+		<property name="updateSerialNumber">
+		<![CDATA[
+			update ta_bz_serial_number set SN=#[sn],ACTIVATE_STATUS=#[activateStatus],ORDER_ID=#[orderId],USER_ID=#[userId],VALID_END_TIME=#[validEndTime],VALID_START_TIME=#[validStartTime] where SN=#[sn]
+		]]>
+	</property>
+		<property name="selectById">
+		<![CDATA[
+			select * from ta_bz_serial_number where SN =?
+		]]>
+	</property>
+
+	<property name="selectByOrderId">
+		<![CDATA[
+			select * from ta_bz_serial_number where ORDER_ID=?
+		]]>
+	</property>
+
+
+		<property name="queryListSerialNumber">
+		<![CDATA[
+			SELECT A.*,B.USER_NAME,C.ORDER_NAME FROM TA_BZ_SERIAL_NUMBER A
+			LEFT JOIN TD_SM_USER B ON A.USER_ID = B.USER_ID
+			JOIN TA_BZ_ORDER C ON A.ORDER_ID = C.ORDER_ID
+			where 1=1
+
+			#if($sn && !$sn.equals(""))
+				and SN =#[sn]
+			#end
+
+			#if($orderId && !$orderId.equals(""))
+				and a.ORDER_ID =#[orderId]
+			#end
+
+			#if($userName && !$userName.equals(""))
+				and b.USER_NAME =#[userName]
+			#end
+						
+		]]>
+	</property>
+
+	<property name="getSNByUserIdAndRole">
+		<![CDATA[
+			select b.* from ta_bz_order a join ta_bz_serial_number b on a.ORDER_ID = b.ORDER_ID
+			where b.ACTIVATE_STATUS = '1'
+
+			#if($roleId && !$roleId.equals(""))
+				and a.role_id =#[roleId]
+			#end
+
+			#if($userId && !$userId.equals(""))
+				and a.USER_ID =#[userId]
+			#end
+
+			ORDER BY b.VALID_END_TIME, CREATE_TIME desc
+
+		]]>
+	</property>
+
+	<property name="setSerialNumberEnd">
+		<![CDATA[
+			update ta_bz_serial_number set ACTIVATE_STATUS = '2' where  sn = ?
+		]]>
+	</property>
+
+
+	</properties>

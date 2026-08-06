@@ -1,0 +1,22 @@
+
+# -----------------------------------------------------------------------
+# TD_SM_COLUMNROLERESOP
+# -----------------------------------------------------------------------
+drop table if exists TD_SM_COLUMNROLERESOP;
+
+CREATE TABLE TD_SM_COLUMNROLERESOP
+(
+    OP_ID VARCHAR(50) NOT NULL,
+    RES_ID VARCHAR(100) NOT NULL,
+    ROLE_ID VARCHAR(50) NOT NULL,
+    RESTYPE_ID VARCHAR(50) NOT NULL,
+    AUTO VARCHAR(50),
+    RES_NAME VARCHAR(500),
+    TYPES VARCHAR(50) NOT NULL,
+    AUTHORIZATION_TYPE INTEGER(2) default 0,
+    USE_COUNT INTEGER(10),
+    AUTHORIZATION_STIME DATETIME,
+    AUTHORIZATION_ETIME DATETIME,
+    USE_COUNTED INTEGER(10),
+    PRIMARY KEY(OP_ID,RES_ID,ROLE_ID,RESTYPE_ID,TYPES)) ENGINE=InnoDB;
+

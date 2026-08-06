@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+**
+ *  Copyright 2008-2010 biaoping.yin
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ *
+ * Title: modelRun.xml
+ * Description: 模型运行sql配置文件
+ * Company:jbxbckj
+ * Copyright (c) 2015
+ * @Date 2018-05-17 16:31:44
+ * @author lw
+ * @version v1.0
+ **
+ -->
+<properties>
+
+    <property name="addModelRun">
+        <![CDATA[
+			insert into t_model_run (run_id,exper_id,creat_date,creater,create_usern,jz_id,remark,last_modify_date,last_modifyer,run_colsure,run_name,run_shorck,run_solve,run_status,colsure_type) values(#[runId],#[experId],#[creatDate],#[creater],#[createUsern],#[jzId],#[remark],#[lastModifyDate],#[lastModifyer],#[runColsure],#[runName],#[runShorck],#[runSolve],#[runStatus],#[colsureType])
+		]]>
+    </property>
+    <property name="deleteByKey">
+        <![CDATA[
+			delete from t_model_run where run_id=?
+		]]>
+    </property>
+    <property name="updateModelRun">
+        <![CDATA[
+			update t_model_run set run_id=#[runId],creat_date=#[creatDate],creater=#[creater],create_usern=#[createUsern],jz_id=#[jzId],last_modify_date=#[lastModifyDate],last_modifyer=#[lastModifyer],run_colsure=#[runColsure],run_name=#[runName],run_shorck=#[runShorck],run_solve=#[runSolve],run_status=#[runStatus],model_type=#[modelType]  where run_id=#[runId]
+		]]>
+    </property>
+    <property name="selectById">
+        <![CDATA[
+			select t.*,d.USER_NAME from t_model_run  t
+				INNER JOIN td_sm_user d on t.creater = d.USER_ID
+ 				where t.run_id=?
+		]]>
+    </property>
+    <property name="queryListModelRun">
+        <![CDATA[
+			select t.*,d.USER_NAME from t_model_run  t INNER JOIN  td_sm_user d
+                on t.creater = d.USER_ID
+                where 1=1
+                #if($runName && !$runName.equals(""))
+                                and t.run_name like #[runName]
+                                #end
+                            #if($creater && !$creater.equals(""))
+                                    and t.creater = #[creater]
+                            #end
+                            #if($runStatus && !$runStatus.equals(""))
+                                and t.run_status =#[runStatus]
+                            #end
+                            #if($sortKey && !$sortKey.equals(""))
+                        order by $sortKey #if($sortDesc)desc#else asc#end
+                    #end
+		]]>
+    </property>
+
+    <property name="queryListShorck">
+        <![CDATA[
+			select * from t_model_shorcks order by shorck_id
+		]]>
+    </property>
+    <property name="queryJZList">
+        <![CDATA[
+			 select t.*,
+            DATE_FORMAT(t.creat_date,'%Y') year,
+            DATE_FORMAT(t.creat_date,'%b') month,
+            DATE_FORMAT(t.creat_date,'%d') day
+            from t_jz_main t where creater=? order by creat_date desc
+		]]>
+    </property>
+
+    <property name="queryJZListWithYM">
+        <![CDATA[
+			  select t.*  from t_jz_main t where t.creat_date like CONCAT( ?,'%') and t.creater=? and t.is_symbol!=1   order by creat_date desc
+		]]>
+    </property>
+
+    <property name="refSimulateTree">
+        <![CDATA[
+			select t.run_Id as id,t.run_Name as text,t.is_symbol as isSymbol, 'true' children,run_status ,jz_id as jzId from t_model_run  t where 1=1
+               #if($experId && !$experId.equals(""))
+                   and t.exper_id = #[experId]
+             #end
+
+             #if($creater && !$creater.equals(""))
+                   and t.creater = #[creater]
+             #end
+
+               order by creat_date desc
+		]]>
+    </property>
+
+    <property name="getJsTreeChildren">
+        <![CDATA[
+			 select t.id,t.pid,t.dparam_sp as text , t.explain as title,
+			 'fa fa-file icon-state-warning' as icon,
+			 'false' as children,
+			 t.text  as csv,dimension,unit,nature
+			  from t_variable_class t where pid = ? order by order_no
+		]]>
+    </property>
+
+    <property name="checkRunName">
+        <![CDATA[
+			SELECT run_id from t_model_run where creater= ? and run_name= ?
+		]]>
+    </property>
+    <property name="getVariableById">
+        <![CDATA[
+			SELECT * from t_variable_class WHERE id= ?
+		]]>
+    </property>
+
+    <property name="getModelRunByMdid">
+        <![CDATA[
+			SELECT * from t_model_run where jz_id= ?
+		]]>
+    </property>
+
+
+    <property name="operateFinish">
+        <![CDATA[
+			UPDATE t_exper_main set exper_state='05' WHERE exper_id=?;
+		]]>
+    </property>
+
+
+    <property name="getExperMainByExperID">
+        <![CDATA[
+			SELECT * from t_exper_main where exper_id=?
+		]]>
+    </property>
+
+</properties>

@@ -1,0 +1,32 @@
+<properties>
+
+	<!-- 
+		描述:初始化序列号控制器SerialNumberController，并将所有关联的序列号service注入到此控制器中。并以别名的形式定义好跳转页面。
+	    author:lijia
+		CopyRight:XX
+		版本:v1.0 
+	    Date: 2018-02-23 08:55:31
+	-->
+
+	<property name="/serialnumber/*.page"
+		path:index="/jsp/serialnumber/main.jsp"
+		path:queryListInfoSerialNumbers="/jsp/serialnumber/serialNumberListInfo.jsp"
+		path:queryListSerialNumbers="/jsp/serialnumber/serialNumberList.jsp"
+		path:updateSerialNumber="/jsp/serialnumber/serialNumberEdit.jsp"
+		path:addSerialNumber="/jsp/serialnumber/serialNumberAdd.jsp"
+		path:getSerialNumber="/jsp/serialnumber/serialNumberView.jsp"
+		f:serialNumberService="attr:serialnumber.serialNumberService"
+		class="com.pcloud.serialnumber.action.SerialNumberController" >
+	</property>
+		<property name="serialnumber.serialNumberService"
+		f:executor="attr:serialnumber.configsqlexecutor"
+		class="com.pcloud.serialnumber.service.SerialNumberServiceImpl"
+		/>
+	<property name="serialnumber.configsqlexecutor"		
+		class="com.frameworkset.common.poolman.ConfigSQLExecutor" >
+		<construction>
+			<property value="com/pcloud/serialnumber/service/serialNumber.xml"/>
+		</construction>
+	</property>
+	
+</properties>

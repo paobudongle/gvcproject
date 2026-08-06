@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.bbossgroups:bboss-taglib:5.0.9">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.bbossgroups/bboss-taglib/5.0.9/3c93fd002c15de5b994d246722b5914a2ed70e19/bboss-taglib-5.0.9.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.bbossgroups/bboss-taglib/5.0.9/6f51515a5b60fed7b33e4a88415b0145b7c31cc9/bboss-taglib-5.0.9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

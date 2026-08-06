@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="LOCAL" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleHome" value="E:/gradle-4.5" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/bboss-pdp-adminservice" />
+            <option value="$PROJECT_DIR$/bboss-pdp-auth" />
+            <option value="$PROJECT_DIR$/bboss-pdp-config" />
+            <option value="$PROJECT_DIR$/bboss-pdp-dict" />
+            <option value="$PROJECT_DIR$/bboss-pdp-dubbo" />
+            <option value="$PROJECT_DIR$/bboss-pdp-dubbo-inf" />
+            <option value="$PROJECT_DIR$/bboss-pdp-fastwx" />
+            <option value="$PROJECT_DIR$/bboss-pdp-web" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

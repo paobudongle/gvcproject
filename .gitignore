@@ -1,0 +1,29 @@
+# Local tooling (not source)
+/tools/
+/gradle-6.1.1/
+/.cursor/
+
+# Gradle / IDE
+**/.gradle/
+**/build/
+**/out/
+**/.idea/
+*.iml
+*.ipr
+*.iws
+
+# Logs & temp
+*.log
+*.tmp
+*.swp
+.DS_Store
+Thumbs.db
+
+# Duplicate archives
+**/jsp.zip
+
+# Runtime / local overrides
+**/fileDir/
+**/common-mvc.log
+**/startup.log
+**/velocity.log

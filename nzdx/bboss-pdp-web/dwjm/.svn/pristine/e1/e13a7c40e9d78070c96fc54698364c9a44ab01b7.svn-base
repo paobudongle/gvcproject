@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.bbossgroups:bboss-http:5.0.9">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.bbossgroups/bboss-http/5.0.9/63536d68489a5c900e6eec68dc8c8131ab9b0a95/bboss-http-5.0.9.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.bbossgroups/bboss-http/5.0.9/1fc08601824a98e00e76da7b67832649bf099b44/bboss-http-5.0.9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

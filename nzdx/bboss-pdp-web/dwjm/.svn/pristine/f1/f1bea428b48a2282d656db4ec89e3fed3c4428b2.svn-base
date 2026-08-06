@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: javax.resource:connector-api:1.6-alpha-1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.resource/connector-api/1.6-alpha-1/f2fa6c6752437e1e81d1ec9413e9426e43855014/connector-api-1.6-alpha-1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.resource/connector-api/1.6-alpha-1/21735bcd5d07f32ddc5237dc66f65a60101c29/connector-api-1.6-alpha-1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

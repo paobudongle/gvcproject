@@ -1,0 +1,35 @@
+<properties>
+
+	<!-- 
+		描述:初始化机构管理管理控制器SmOrganizationController，并将所有关联的机构管理管理service注入到此控制器中。并以别名的形式定义好跳转页面。
+	    author:yinbp
+		CopyRight:bboss
+		版本:v1.0 
+	    Date: 2016-11-28 16:33:16
+	-->
+
+	<property name="/sysmanager/org/*.page"
+		path:index="/jsp/sysmanager/org/main.jsp"
+		path:queryListSmOrganizations="/jsp/sysmanager/org/orglistinfo.jsp"
+		path:updateSmOrganization="/jsp/sysmanager/org/editorg.jsp"
+		path:addSmOrganization="/jsp/sysmanager/org/addorg.jsp"
+		path:getSmOrganization="/jsp/sysmanager/org/vieworg.jsp"
+		path:orgmanagerset="/jsp/sysmanager/org/orgmanagerset.jsp"
+		path:orgmanagerlist="/jsp/sysmanager/org/orgmanagerlist.jsp"
+		f:smOrganizationService="attr:org.smOrganizationService"
+		f:userService="attr:user.smUserService"
+		f:roleService="attr:role.roleService"
+		class="com.frameworkset.platform.admin.action.SmOrganizationController" >
+	</property>
+		<property name="org.smOrganizationService"
+		f:executor="attr:org.configsqlexecutor"
+		class="com.frameworkset.platform.admin.service.SmOrganizationServiceImpl"
+		/>
+	<property name="org.configsqlexecutor"		
+		class="com.frameworkset.common.poolman.ConfigSQLExecutor" >
+		<construction>
+			<property value="com/frameworkset/platform/admin/service/smOrganization.xml"/>
+		</construction>
+	</property>
+	
+</properties>

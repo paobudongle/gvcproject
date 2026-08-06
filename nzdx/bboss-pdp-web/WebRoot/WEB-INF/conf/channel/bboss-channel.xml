@@ -1,0 +1,32 @@
+<properties>
+
+	<!-- 
+		描述:初始化栏目管理控制器ChannelController，并将所有关联的栏目管理service注入到此控制器中。并以别名的形式定义好跳转页面。
+	    author:lijia
+		CopyRight:bxckj
+		版本:v1.0 
+	    Date: 2018-02-26 21:15:12
+	-->
+
+	<property name="/channel/*.page"
+		path:index="/jsp/channel/main.jsp"
+		path:queryListInfoChannels="/jsp/channel/channelListInfo.jsp"
+		path:queryListChannels="/jsp/channel/channelList.jsp"
+		path:updateChannel="/jsp/channel/channelEdit.jsp"
+		path:addChannel="/jsp/channel/channelAdd.jsp"
+		path:getChannel="/jsp/channel/channelView.jsp"
+		f:channelService="attr:channel.channelService"
+		class="com.pcloud.channel.action.ChannelController" >
+	</property>
+		<property name="channel.channelService"
+		f:executor="attr:channel.configsqlexecutor"
+		class="com.pcloud.channel.service.ChannelServiceImpl"
+		/>
+	<property name="channel.configsqlexecutor"		
+		class="com.frameworkset.common.poolman.ConfigSQLExecutor" >
+		<construction>
+			<property value="com/pcloud/channel/service/channel.xml"/>
+		</construction>
+	</property>
+	
+</properties>

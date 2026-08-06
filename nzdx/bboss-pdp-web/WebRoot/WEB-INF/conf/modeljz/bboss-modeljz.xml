@@ -1,0 +1,42 @@
+<properties>
+
+	<!-- 
+		描述:初始化模型数据加总控制器JzMainController，并将所有关联的模型数据加总service注入到此控制器中。并以别名的形式定义好跳转页面。
+	    author:liuwu
+		CopyRight:北京信碧诚
+		版本:v1.0 
+	    Date: 2018-03-25 00:24:45
+	-->
+
+	<property name="/modeljz/*.page"
+		path:index="/jsp/modeljz/main.jsp"
+		path:queryListInfoJzMains="/jsp/modeljz/jzMainListInfo.jsp"
+		path:queryListJzMains="/jsp/modeljz/jzMainList.jsp"
+		path:updateJzMain="/jsp/modeljz/jzMainEdit.jsp"
+		path:addJzMain="/jsp/modeljz/jzMainAdd.jsp"
+		path:toIndexAddJzMain="/jsp/simulate/jzMainAdd.jsp"
+		path:getJzMain="/jsp/modeljz/jzMainView.jsp"
+		path:step="/jsp/modeljz/jzStepView.jsp"
+		path:toJzFile="/jsp/modeljz/jzMainFile.jsp"
+		path:toIndexJzFile="/jsp/simulate/jzMainFile.jsp"
+		path:toSimulate="/jsp/simulate/simulateIndex.jsp"
+		path:toImpAgg="/jsp/simulate/impAgg.jsp"
+		path:toImpCase="/jsp/simulate/impCase.jsp"
+	    path:toReName="/jsp/simulate/reName.jsp"
+		path:toPermission="/jsp/simulate/permission.jsp"
+		f:jzMainService="attr:modeljz.jzMainService"
+		f:modelRunService="attr:ModelRun.modelRunService"
+		class="com.pcloud.modeljz.action.JzMainController" >
+	</property>
+		<property name="modeljz.jzMainService"
+		f:executor="attr:modeljz.configsqlexecutor"
+		class="com.pcloud.modeljz.service.JzMainServiceImpl"
+		/>
+	<property name="modeljz.configsqlexecutor"		
+		class="com.frameworkset.common.poolman.ConfigSQLExecutor" >
+		<construction>
+			<property value="com/pcloud/modeljz/service/jzMain.xml"/>
+		</construction>
+	</property>
+	
+</properties>

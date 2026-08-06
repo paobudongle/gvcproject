@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+**
+ *  Copyright 2008-2010 biaoping.yin
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ *
+ * Title: notification.xml
+ * Description: 通知公告sql配置文件 
+ * Company:bxc
+ * Copyright (c) 2015
+ * @Date 2018-12-13 12:31:18
+ * @author lijia
+ * @version v1.0 
+ **
+ -->
+<properties>
+
+	<property name="addNU">
+		<![CDATA[
+			Insert into t_nt_notification_user(notification_id,user_id,read_state) select ?,USER_ID,'0' from td_sm_user
+		]]>
+	</property>
+	<property name="delNU">
+		<![CDATA[
+			delete from t_nt_notification_user where notification_id=?
+		]]>
+	</property>
+	
+		<property name="addNotification">
+		<![CDATA[
+			insert into t_nt_notification (notification_id,notification_content,notification_state,notification_time,notification_title) values(#[notificationId],#[notificationContent],#[notificationState],#[notificationTime],#[notificationTitle])
+		]]>
+	</property>
+		<property name="deleteByKey">
+		<![CDATA[
+			delete from t_nt_notification where notification_id=?
+		]]>
+	</property>
+		<property name="updateNotification">
+		<![CDATA[
+			update t_nt_notification set notification_id=#[notificationId],notification_content=#[notificationContent],notification_state=#[notificationState],notification_time=#[notificationTime],notification_title=#[notificationTitle] where notification_id=#[notificationId]
+		]]>
+	</property>
+
+	<property name="delNotificationByUserId">
+		<![CDATA[
+			update t_nt_notification_user set read_state= '2' where notification_id=#[notificationId] and user_id=#[userId]
+		]]>
+	</property>
+
+	<property name="readAllMessgeByUserId">
+		<![CDATA[
+			update t_nt_notification_user set read_state= '1' where  user_id= ? and read_state = '0'
+		]]>
+	</property>
+
+	<property name="setReadMessge">
+		<![CDATA[
+			update t_nt_notification_user set read_state= '1' where  notification_id= ? and read_state = '0'
+		]]>
+	</property>
+
+
+		<property name="selectById">
+		<![CDATA[
+			select * from t_nt_notification where notification_id=?
+		]]>
+	</property>
+		<property name="queryListNotification">
+		<![CDATA[
+			select * from t_nt_notification where 1=1
+						#if($notificationTitle && !$notificationTitle.equals(""))
+				and notification_title like #[notificationTitle]		
+			#end
+			
+		]]>
+	</property>
+	<property name="queryListNotificationsByUserId">
+		<![CDATA[
+			select t.*,t1.read_state from t_nt_notification t join t_nt_notification_user t1 on t.notification_id = t1.notification_id
+			where t1.user_id = ? and t1.read_state in(0,1) and t.notification_state = 1
+
+		]]>
+	</property>
+
+	<property name="queryListSubscriptionByUserId">
+		<![CDATA[
+		select o.ORDER_NAME,t.VALID_START_TIME,t.VALID_END_TIME,datediff(t.VALID_END_TIME,now()) PERIOD_DAY  from ta_bz_serial_number t
+		join ta_bz_order o on t.ORDER_ID = o.ORDER_ID
+		where t.user_id = ?
+
+		]]>
+	</property>
+
+	<property name="queryListSubscription">
+		<![CDATA[
+		select t.user_id,o.ORDER_NAME,t.VALID_START_TIME,t.VALID_END_TIME,datediff(t.VALID_END_TIME,now()) PERIOD_DAY  from ta_bz_serial_number t
+		join ta_bz_order o on t.ORDER_ID = o.ORDER_ID
+		where datediff(t.VALID_END_TIME,now()) <= ?
+
+		]]>
+	</property>
+
+	<property name="subscriptionsRemoveRoleTask">
+		<![CDATA[
+		SELECT
+				a.*
+			FROM
+				v_subscription a
+			WHERE
+				a.VALID_END_TIME = ( SELECT max( VALID_END_TIME ) FROM v_subscription WHERE user_id = a.user_ID )
+			ORDER BY
+				a.user_id
+
+		]]>
+	</property>
+
+
+	<property name="CountsUnreadMessge">
+		<![CDATA[
+			select t1.read_state from t_nt_notification_user t1 where t1.user_id = ? and t1.read_state = 0
+
+		]]>
+	</property>
+	</properties>

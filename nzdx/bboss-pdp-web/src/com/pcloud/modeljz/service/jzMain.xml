@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+**
+ *  Copyright 2008-2010 biaoping.yin
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ *
+ * Title: jzMain.xml
+ * Description: 模型数据加总sql配置文件 
+ * Company:北京信碧诚
+ * Copyright (c) 2015
+ * @Date 2018-03-25 00:24:45
+ * @author liuwu
+ * @version v1.0 
+ **
+ -->
+<properties>
+
+	<property name="addJzMain">
+		<![CDATA[
+			insert into t_jz_main (jz_id,jz_title,jz_type,jz_oglname,jz_status,remark,agg_log,csv_log,creat_date,creater,last_modify_date,md_id,output_dir,creater_usern) values(#[jzId],#[jzTitle],#[jzType],#[jzOglname],#[jzStatus],#[remark],#[aggLog],#[csvLog],#[creatDate],#[creater],#[lastModifyDate],#[mdId],#[outputDir],#[createrUsern])
+		]]>
+	</property>
+	<property name="deleteByKey">
+		<![CDATA[
+			delete from t_jz_main where jz_id=?
+		]]>
+	</property>
+	<property name="updateJzMain">
+		<![CDATA[
+			update t_jz_main set jz_id=#[jzId],jz_title=#[jzTitle],jz_status=#[jzStatus],remark=#[remark],agg_log=#[aggLog],csv_log=#[csvLog],creat_date=#[creatDate],last_modify_date=#[lastModifyDate],md_id=#[mdId],output_dir=#[outputDir] where jz_id=#[jzId]
+		]]>
+	</property>
+	<property name="selectById">
+		<![CDATA[
+			select t.* ,d.USER_NAME  from t_jz_main t  inner join td_sm_user d  on t.creater = d.USER_ID where t.jz_id=?
+		]]>
+	</property>
+
+	<property name="selectJzDfById">
+		<![CDATA[
+			SELECT * from t_jz_class_df  where df_id =?
+		]]>
+	</property>
+
+	<property name="deleteJzDfByKey">
+		<![CDATA[
+			delete from t_jz_class_df where df_id=?
+		]]>
+	</property>
+
+	<property name="queryListJzMain">
+		<![CDATA[
+			select * from t_jz_main where 1=1
+				#if($jzTitle && !$jzTitle.equals(""))
+					and jz_title like #[jzTitle]
+				#end
+				#if($jzStatus && $jzStatus > 0)
+					and jz_status=#[jzStatus]
+				#end
+				#if($creatDate && !$creatDate.equals(""))
+					and creat_date like #[creatDate]
+				#end
+				#if($creater && !$creater.equals(""))
+					and creater = #[creater]
+				#end
+			#if($sortKey && !$sortKey.equals(""))
+		order by $sortKey #if($sortDesc)desc#else asc#end
+	#end
+
+		]]>
+	</property>
+
+
+	<property name="queryListJzDf">
+		<![CDATA[
+			select * from t_jz_class_df where df_type =? and md_id=?  order by  CAST(sort_no as SIGNED)
+		]]>
+	</property>
+
+	<property name="getYearMouth">
+		<![CDATA[
+			SELECT  DISTINCT(SUBSTR(creat_date ,1,7)) ym from t_jz_main where creater=? and  is_symbol!=1  order by creat_date desc
+		]]>
+	</property>
+	<!--	<property name="queryListJzAreaIndus">
+            <![CDATA[
+                select * from t_jz_area_indus where ai_type = ?
+            ]]>
+        </property>-->
+
+
+	<property name="querySymbJzMain">
+		<![CDATA[
+                SELECT md_id,jz_title,remark from t_jz_main where is_symbol=1
+            ]]>
+	</property>
+	<property name="queryListJzBasic">
+		<![CDATA[
+			select dic_id,dic_title,dic_type,belongs as df_title,belongs,remark,sort_no from t_jz_basic WHERE dic_type = ? order by CAST(sort_no as SIGNED)
+		]]>
+	</property>
+
+	<property name="updateJzDf">
+		<![CDATA[
+			update t_jz_class_df set df_Title=#[dfTitle],remark=#[remark],sort_no=#[sortNo] where df_Id=#[dfId]
+		]]>
+	</property>
+
+
+	<property name="queryListJzAreaIndus">
+		<![CDATA[
+			select * from t_jz_area_indus where ai_type =? and md_id=? order by  sort_no
+		]]>
+	</property>
+
+
+	<property name="addjzDf">
+		<![CDATA[
+			insert into t_jz_class_df (df_id,md_id,df_type,df_code,df_title,remark,creat_date,creater,sort_no) values(#[dfId],#[mdId],#[dfType],#[dfCode],#[dfTitle],#[remark],#[creatDate],#[creater],#[sortNo])
+		]]>
+	</property>
+
+	<property name="addAreaIndus">
+		<![CDATA[
+			insert into t_jz_area_indus(ai_id,md_id,ai_type,ai_code,ai_name,ai_blong_before,ai_blong_new,creat_date,last_modify_date,creater,ai_remark,sort_no)
+			values(#[aiId],#[mdId],#[aiType],#[aiCode],#[aiName],#[aiBlongBefore],#[aiBlongNew],#[createDate],#[lastModifyDate],#[creater],#[aiRemark],#[sortNo])
+		]]>
+	</property>
+	<property name="queryListShorck">
+		<![CDATA[
+			select * from t_model_shorcks order by shorck_id
+		]]>
+	</property>
+
+	<property name="getSymbJzDf">
+		<![CDATA[
+			SELECT t.* from t_jz_class_df t where t.md_id=? and t.df_type=? order by sort_no;
+		]]>
+	</property>
+	<property name="getSymbJz">
+		<![CDATA[
+			SELECT t.* from t_jz_area_indus t where t.md_id=? and t.ai_type=? order by sort_no;
+		]]>
+	</property>
+
+	<property name="deleteJzdfByMdId">
+		<![CDATA[
+			delete from t_jz_class_df where md_id=? and df_type=?
+		]]>
+	</property>
+
+
+	<property name="deleteJzdfByMdIdOnly">
+		<![CDATA[
+			delete from t_jz_class_df where md_id=?
+		]]>
+	</property>
+
+	<property name="deleteJzDetailByMdId">
+		<![CDATA[
+			delete from t_jz_area_indus where md_id=? and ai_type=?
+		]]>
+	</property>
+
+	<property name="batchAddJzDf">
+		<![CDATA[
+			insert into t_jz_class_df (df_id,md_id,df_type,df_code,df_title,remark,creat_date,creater,sort_no) values(#[dfId],#[mdId],#[dfType],#[dfCode],#[dfTitle],#[remark],#[creatDate],#[creater],#[sortNo])
+		]]>
+	</property>
+
+	<property name="queryListJzDfAll">
+		<![CDATA[
+			select * from t_jz_class_df where md_id=?  order by  CAST(sort_no as SIGNED)
+		]]>
+	</property>
+
+	<property name="queryListJzAreaIndusAll">
+		<![CDATA[
+			select * from t_jz_area_indus where md_id=? order by  CAST(sort_no as SIGNED)
+		]]>
+	</property>
+
+	<property name="deleteModelRun">
+		<![CDATA[
+			delete from t_model_run where jz_id=?
+		]]>
+	</property>
+	<property name="checkJzName">
+		<![CDATA[
+			SELECT jz_title from t_jz_main where creater =? and jz_title=?
+		]]>
+	</property>
+
+	<property name="selectBymdId">
+		<![CDATA[
+			select t.* ,d.USER_NAME  from t_jz_main t  inner join td_sm_user d  on t.creater = d.USER_ID where t.md_id=?
+		]]>
+	</property>
+    <property name="updateJzTitle">
+        <![CDATA[
+			update t_jz_main set jz_title=#[jzTitle] where jz_id=#[jzId]
+		]]>
+    </property>
+</properties>

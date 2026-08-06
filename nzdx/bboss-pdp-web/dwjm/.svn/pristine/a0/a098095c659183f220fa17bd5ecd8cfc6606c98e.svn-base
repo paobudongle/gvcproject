@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.bbossgroups.plugins:bboss-plugin-dubbo:5.0.9">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.bbossgroups.plugins/bboss-plugin-dubbo/5.0.9/dd433786fa2b7015ad9a1ff3f71423c6a2370e9f/bboss-plugin-dubbo-5.0.9.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.bbossgroups.plugins/bboss-plugin-dubbo/5.0.9/832611d85d72171ad0aade33661859f26a177730/bboss-plugin-dubbo-5.0.9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

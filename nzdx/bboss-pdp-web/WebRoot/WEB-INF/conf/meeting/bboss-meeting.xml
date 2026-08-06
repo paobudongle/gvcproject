@@ -1,0 +1,32 @@
+<properties>
+
+	<!-- 
+		描述:初始化会议管理控制器MeetingController，并将所有关联的会议管理service注入到此控制器中。并以别名的形式定义好跳转页面。
+	    author:lijia
+		CopyRight:bc
+		版本:v1.0 
+	    Date: 2018-05-19 12:04:43
+	-->
+
+	<property name="/meeting/*.page"
+		path:index="/jsp/meeting/main.jsp"
+		path:queryListInfoMeetings="/jsp/meeting/meetingListInfo.jsp"
+		path:queryListMeetings="/jsp/meeting/meetingList.jsp"
+		path:updateMeeting="/jsp/meeting/meetingEdit.jsp"
+		path:addMeeting="/jsp/meeting/meetingAdd.jsp"
+		path:getMeeting="/jsp/meeting/meetingView.jsp"
+		f:meetingService="attr:meeting.meetingService"
+		class="com.pcloud.meeting.action.MeetingController" >
+	</property>
+		<property name="meeting.meetingService"
+		f:executor="attr:meeting.configsqlexecutor"
+		class="com.pcloud.meeting.service.MeetingServiceImpl"
+		/>
+	<property name="meeting.configsqlexecutor"		
+		class="com.frameworkset.common.poolman.ConfigSQLExecutor" >
+		<construction>
+			<property value="com/pcloud/meeting/service/meeting.xml"/>
+		</construction>
+	</property>
+	
+</properties>

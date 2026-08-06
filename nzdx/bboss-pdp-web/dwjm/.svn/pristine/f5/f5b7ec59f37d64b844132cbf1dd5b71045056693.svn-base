@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.quartz-scheduler:quartz-backward-compat:2.1.7">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.quartz-scheduler/quartz-backward-compat/2.1.7/71836745ee4973357a846f8e3ec38ea62c878d09/quartz-backward-compat-2.1.7.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.quartz-scheduler/quartz-backward-compat/2.1.7/4739dac914a29ec6d5862af5617af2d129003e41/quartz-backward-compat-2.1.7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,32 @@
+<properties>
+
+	<!-- 
+		描述:初始化内容分类控制器ContentTypeController，并将所有关联的内容分类service注入到此控制器中。并以别名的形式定义好跳转页面。
+	    author:lijia
+		CopyRight:xxx
+		版本:v1.0 
+	    Date: 2018-03-04 17:50:51
+	-->
+
+	<property name="/contenttype/*.page"
+		path:index="/jsp/contenttype/main.jsp"
+		path:queryListInfoContentTypes="/jsp/contenttype/contentTypeListInfo.jsp"
+		path:queryListContentTypes="/jsp/contenttype/contentTypeList.jsp"
+		path:updateContentType="/jsp/contenttype/contentTypeEdit.jsp"
+		path:addContentType="/jsp/contenttype/contentTypeAdd.jsp"
+		path:getContentType="/jsp/contenttype/contentTypeView.jsp"
+		f:contentTypeService="attr:contenttype.contentTypeService"
+		class="com.pcloud.contenttype.action.ContentTypeController" >
+	</property>
+		<property name="contenttype.contentTypeService"
+		f:executor="attr:contenttype.configsqlexecutor"
+		class="com.pcloud.contenttype.service.ContentTypeServiceImpl"
+		/>
+	<property name="contenttype.configsqlexecutor"		
+		class="com.frameworkset.common.poolman.ConfigSQLExecutor" >
+		<construction>
+			<property value="com/pcloud/contenttype/service/contentType.xml"/>
+		</construction>
+	</property>
+	
+</properties>

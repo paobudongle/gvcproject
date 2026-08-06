@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 定义系统中的子系统功能模块 子元素：subsystem－对应不同的子系统，例如：内容管理和工作流 -->
+<system languages="zh_CN,en_US">
+	<!-- 定义系统中的子系统功能模块 属性：name－子系统中文名称 id－子系统标识 module－模块文件名称 baseuri－如果子系统部署在其他的应用 -->
+
+
+	<!--<subsystem name="测试系统" i18n:en_US="testsystem" id="test" module="menus/module-test.xml"
+		baseuri="http://localhost:7000/creatorcms" 
+		successRedirect="sanydesktop/index.page"
+		logoutredirect="/sanymbp/login.page"/>-->
+
+	<!-- 可以配置一些菜单变量,
+        菜单路径配置中除了可以配置#[userAccount]类的变量，还可以配置#[p:userAccount]类型变量，p:开头的变量的值可以从属性文件中获取，属性文件的配置方法是：
+
+         -->
+	<property file="menus/urls.xml"/>
+
+	<!-- 
+		系统菜单国际化规范：
+		两种方式来实现菜单国际化
+		方法1 可以通过messagesource来，用来指定菜单的公共元素国际化，诸如：
+			个人中心，您的当前位置：
+		等等
+		方法2 直接在菜单相关元素上设置国际化代码信息
+	
+		属性说明：
+		messagesource 菜单国际化属性文件名称，相对于classpath的路径即可，一个子系统对应自己的国际化菜单配置文件，
+		子系统之间属性文件独立管理，code可以重复
+		多个文件用逗号分隔具体配置可参考文档：
+		http://yin-bp.iteye.com/blog/1518454 
+		
+		菜单国际化涉及到菜单标题和相关图片的国际化，标题国际化code与每个module或者item的id相对应，每个module或者item相关
+		图片路径的code为id + . + 图片元素的名称对应，例如indexpage.mouseupimg，indexpage.mouseoverimg，
+		indexpage.mouseoutimg，indexpage.headimg
+		
+		如果没有指定messagesource，那么忽略相依子系统的国际化处理
+		如果对应module和item没有指定code，那么直接输出原始配置的name属性值和对应得图标元素的值
+		
+		languages:用来设置需要支持的语言种类，每个子系统可以自行设置，语言之间用逗号分隔		
+		"zh_CN,en_US"
+		
+		
+		logoimage:需要国际化
+	-->
+	<sysmenu name="spplatform"
+			 successRedirect="admin/index.page"
+			 logoutredirect="login.page"
+			 showrootleftmenu="true" messagesource="menus/messages_module"
+
+	>
+		<description i18n:en_US="Public Develop Platform" >虚仿平台</description>
+		<!-- 公共缺省的栏目，如果用户登录系统后无访问权限，或者main为true时，将显示该栏目 -->
+		<publicitem name="首页"
+					i18n:en_US="Index" iframe="true"
+					id="indexpage" icon="icon-home">
+			<mouseclickimg>html/images/date_work.jpg</mouseclickimg>
+
+			<workspace>
+				<!--<content>detail.html</content> -->
+				<content >admin/content.page</content>
+
+			</workspace>
+			<authoration>
+				<!-- <url>/jsp/sysmanager/resource/main.jsp</url> -->
+			</authoration>
+		</publicitem>
+
+
+
+		<module name="系统管理" id="sysmanager" used="true" showleftmenu="false"  i18n:en_US="System Manage">
+
+			<description>系统管理</description>
+			<item name="用户查询" id="userquery"   i18n:en_US="User Query" fullpageload="true">
+
+				<workspace>
+					<content>/sysmanager/userquery/index.page</content>
+				</workspace>
+				<authoration>
+					<url>/sysmanager/userquery/*.page,/jsp/sysmanager/userquery/*.jsp</url>
+				</authoration>
+
+			</item>
+
+			<item name="用户管理" id="usermanager"  i18n:en_US="usermanager Manage" fullpageload="true">
+				<workspace>
+					<content>/sysmanager/user/index.page</content>
+				</workspace>
+				<authoration>
+					<url>/jsp/sysmanager/user/main.jsp</url>
+
+				</authoration>
+			</item>
+
+			<item name="部门管理" id="orgmanager"  i18n:en_US="orgmanager Manage" fullpageload="true">
+				<workspace>
+					<content>/sysmanager/org/index.page</content>
+				</workspace>
+				<authoration>
+					<url>/jsp/sysmanager/org/main.jsp</url>
+				</authoration>
+			</item>
+
+			<item name="角色管理" id="rolemanager"  i18n:en_US="rolemanager Manage" fullpageload="true">
+
+				<workspace>
+					<content>/sysmanager/role/index.page</content>
+				</workspace>
+				<authoration>
+					<url>/jsp/sysmanager/role/main.jsp</url>
+
+				</authoration>
+			</item>
+			<item name="资源管理" id="resquery"   i18n:en_US="Resource Query" fullpageload="true">
+				<mouseclickimg>html/images/jixiao.jpg</mouseclickimg>
+				<top>header.page</top>
+				<!-- <top>perspective_toolbar.jsp</top> -->
+				<!-- <left>perspective_outlookbar.jsp</left> -->
+				<navigator></navigator>
+				<workspace>
+					<content>sysmanager/resource/index.page</content>
+				</workspace>
+				<authoration>
+					<url>/jsp/sysmanager/resource/main.jsp</url>
+				</authoration>
+			</item>
+
+			<item name="菜单管理" id="menumanage" i18n:en_US="Menu Manage" fullpageload="true">
+				<mouseclickimg>html/images/jixiao.jpg</mouseclickimg>
+				<workspace>
+					<content>/menu/index.page</content>
+				</workspace>
+				<authoration>
+					<url>/jsp/sysmanager/menu/*.jsp</url>
+				</authoration>
+			</item>
+
+
+			<item name="字典管理" id="dictmanager"  i18n:en_US="Dic Manage" fullpageload="true">
+				<workspace>
+					<content>/dictmanager/index.page</content>
+				</workspace>
+				<authoration>
+					<url>/dictmanager/*.page</url>
+				</authoration>
+			</item>
+
+
+			<item name="日志管理" id="logquery" i18n:en_US="Log Query" fullpageload="true">
+				<mouseclickimg>html/images/jixiao.jpg</mouseclickimg>
+				<top>header.page</top>
+
+				<workspace>
+					<content>/logmanager/index.page</content>
+				</workspace>
+				<authoration>
+					<url>/logmanager/*.page</url>
+					<url>/jsp/logmanager/*.jsp</url>
+				</authoration>
+
+			</item>
+
+			<item name="IP限制管理" id="ipcontrol" i18n:en_US="Ip Control" used="false">
+				<mouseclickimg>html/images/jixiao.jpg</mouseclickimg>
+				<top>header.page</top>
+				<!-- <top>perspective_toolbar.jsp</top> -->
+				<!-- <left>perspective_outlookbar.jsp</left> -->
+				<navigator></navigator>
+				<workspace>
+					<content>sysmanager/ipcontrol/index.page</content>
+				</workspace>
+				<authoration>
+					<url>/sysmanager/ipcontrol/*.page</url>
+				</authoration>
+
+			</item>
+			<item name="Session管理" id="sessioncontrol" showleftmenu="false" used="false" i18n:en_US="Session Control">
+				<mouseclickimg>html/images/jixiao.jpg</mouseclickimg>
+
+				<workspace>
+					<content>session/sessionManager/sessionManager.page</content>
+				</workspace>
+				<authoration>
+					<url>/session/sessionManager/*.page</url>
+				</authoration>
+
+			</item>
+
+
+		</module>
+		<!--	<module name="字典管理" id="dictmanager" used="true" showleftmenu="false" url="/dictmanager/index.page"  i18n:en_US="Dic Manage">
+
+                <description>字典管理</description>
+                <authoration>
+                    <url>/dictmanager/*.page</url>
+                </authoration>
+            </module>-->
+
+		<item name="通知公告"
+			  i18n:en_US="notification demo" id="notificationManage"  showleftmenu="true" menuType="type1">
+			<top>header.page</top>
+			<workspace>
+				<content>/notifcation/index.page</content>
+			</workspace>
+		</item>
+
+		<module name="模型管理" id="moduleManage" used="true" showleftmenu="false"  i18n:en_US="module Manage" fullpageload="true" >
+			<description>模型管理</description>
+			<item name="数据加总"
+				  i18n:en_US="model jz" id="modeljzManage"  showleftmenu="true" menuType="type1">
+				<top>header.page</top>
+				<workspace>
+					<content>/modeljz/index.page</content>
+				</workspace>
+			</item>
+
+			<item name="在线运行"
+				  i18n:en_US="model run" id="modelRun"  showleftmenu="true" menuType="type1">
+				<top>header.page</top>
+				<workspace>
+					<content>/modelrun/index.page</content>
+				</workspace>
+			</item>
+		</module>
+
+
+		<module name="首页在线模拟" id="oaiManage" used="false" showleftmenu="false"   i18n:en_US="oaiManage">
+			<description>在线模拟</description>
+
+			<item name="宏观模型"  i18n:en_US="macro models" id="macromodel"  showleftmenu="false" menuType="type1">
+				<top>header.page</top>
+				<workspace>
+					<content>/index/toAbout.page?id=1</content>
+				</workspace>
+			</item>
+
+			<item name="全球模型"  i18n:en_US="global models" id="globalmodel"  showleftmenu="false" menuType="type1">
+				<top>header.page</top>
+				<workspace>
+					<content>/modeljz/toSimulate.page</content>
+				</workspace>
+			</item>
+
+
+
+			<item name="国家模型"
+				  i18n:en_US="national model" id="nationalmodel"  showleftmenu="false" menuType="type1">
+				<top>header.page</top>
+				<workspace>
+					<content>/modeljznm/toSimulate.page</content>
+				</workspace>
+			</item>
+
+		</module>
+
+	</sysmenu>
+</system>

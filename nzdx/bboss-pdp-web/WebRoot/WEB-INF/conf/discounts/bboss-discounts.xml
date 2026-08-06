@@ -1,0 +1,32 @@
+<properties>
+
+	<!-- 
+		描述:初始化优惠活动控制器DiscountsController，并将所有关联的优惠活动service注入到此控制器中。并以别名的形式定义好跳转页面。
+	    author:lijia
+		CopyRight:xxx
+		版本:v1.0 
+	    Date: 2018-02-22 16:34:26
+	-->
+
+	<property name="/discounts/*.page"
+		path:index="/jsp/discounts/main.jsp"
+		path:queryListInfoDiscountss="/jsp/discounts/discountsListInfo.jsp"
+		path:queryListDiscountss="/jsp/discounts/discountsList.jsp"
+		path:updateDiscounts="/jsp/discounts/discountsEdit.jsp"
+		path:addDiscounts="/jsp/discounts/discountsAdd.jsp"
+		path:getDiscounts="/jsp/discounts/discountsView.jsp"
+		f:discountsService="attr:discounts.discountsService"
+		class="com.pcloud.discounts.action.DiscountsController" >
+	</property>
+		<property name="discounts.discountsService"
+		f:executor="attr:discounts.configsqlexecutor"
+		class="com.pcloud.discounts.service.DiscountsServiceImpl"
+		/>
+	<property name="discounts.configsqlexecutor"		
+		class="com.frameworkset.common.poolman.ConfigSQLExecutor" >
+		<construction>
+			<property value="com/pcloud/discounts/service/discounts.xml"/>
+		</construction>
+	</property>
+	
+</properties>

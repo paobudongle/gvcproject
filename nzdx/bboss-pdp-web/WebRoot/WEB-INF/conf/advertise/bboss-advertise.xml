@@ -1,0 +1,32 @@
+<properties>
+
+	<!-- 
+		描述:初始化招聘控制器AdvertiseController，并将所有关联的招聘service注入到此控制器中。并以别名的形式定义好跳转页面。
+	    author:lijia
+		CopyRight:bc
+		版本:v1.0 
+	    Date: 2018-05-19 11:48:34
+	-->
+
+	<property name="/advertise/*.page"
+		path:index="/jsp/advertise/main.jsp"
+		path:queryListInfoAdvertises="/jsp/advertise/advertiseListInfo.jsp"
+		path:queryListAdvertises="/jsp/advertise/advertiseList.jsp"
+		path:updateAdvertise="/jsp/advertise/advertiseEdit.jsp"
+		path:addAdvertise="/jsp/advertise/advertiseAdd.jsp"
+		path:getAdvertise="/jsp/advertise/advertiseView.jsp"
+		f:advertiseService="attr:advertise.advertiseService"
+		class="com.pcloud.advertise.action.AdvertiseController" >
+	</property>
+		<property name="advertise.advertiseService"
+		f:executor="attr:advertise.configsqlexecutor"
+		class="com.pcloud.advertise.service.AdvertiseServiceImpl"
+		/>
+	<property name="advertise.configsqlexecutor"		
+		class="com.frameworkset.common.poolman.ConfigSQLExecutor" >
+		<construction>
+			<property value="com/pcloud/advertise/service/advertise.xml"/>
+		</construction>
+	</property>
+	
+</properties>

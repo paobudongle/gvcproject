@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.bbossgroups.security:bboss-ticket:5.0.9">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.bbossgroups.security/bboss-ticket/5.0.9/3bf0adb12baf25ed5cf67db51646805b7daf48d7/bboss-ticket-5.0.9.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.bbossgroups.security/bboss-ticket/5.0.9/be94dcf33cdacb50c3ff31451555c8af96f97e79/bboss-ticket-5.0.9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

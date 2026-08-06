@@ -1,0 +1,34 @@
+<properties>
+
+	<!-- 
+		描述:初始化模型运行控制器ModelRunController，并将所有关联的模型运行service注入到此控制器中。并以别名的形式定义好跳转页面。
+	    author:lw
+		CopyRight:jbxbckj
+		版本:v1.0 
+	    Date: 2018-05-17 16:31:44
+	-->
+
+	<property name="/modelruni/*.page"
+		path:index="/jsp/modelruni/main.jsp"
+		path:queryListInfoModelRuns="/jsp/modelruni/modelRunListInfo.jsp"
+		path:queryListModelRuns="/jsp/modelruni/modelRunList.jsp"
+		path:updateModelRun="/jsp/modelruni/modelRunEdit.jsp"
+		path:addModelRun="/jsp/modelruni/modelRunAdd.jsp"
+		path:getModelRun="/jsp/modelruni/modelRunView.jsp"
+		path:showRunData="/jsp/simulatei/modelRunShow.jsp"
+		f:modelRunIService="attr:ModelRunI.modelRunIService"
+		f:jzMainIService="attr:modeljzi.jzMainIService"
+		class="com.pcloud.modelruni.action.ModelRunIController" >
+	</property>
+		<property name="ModelRunI.modelRunIService"
+		f:executor="attr:ModelRunI.configsqlexecutor"
+		class="com.pcloud.modelruni.service.ModelRunIServiceImpl"
+		/>
+	<property name="ModelRunI.configsqlexecutor"
+		class="com.frameworkset.common.poolman.ConfigSQLExecutor" >
+		<construction>
+			<property value="com/pcloud/modelruni/service/modelRunI.xml"/>
+		</construction>
+	</property>
+	
+</properties>

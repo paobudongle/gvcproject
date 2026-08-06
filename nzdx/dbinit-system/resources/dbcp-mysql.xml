@@ -1,0 +1,16 @@
+<property name="datasource" class="com.frameworkset.commons.dbcp2.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url"><![CDATA[jdbc:mysql://127.0.0.1:3306/nzdx?useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&useSSL=false]]></property>
+        <property name="username" value="root"/>
+        <property name="password" value="123qweasd.com"/>
+        <property name="initialSize" value="5"/>
+        <property name="maxTotal" value="20"/>
+        <property name="maxIdle" value="20"/>
+        <property name="minIdle" value="5"/>
+        <property name="removeAbandonedOnBorrow" value="false"/>
+        <property name="logAbandoned" value="true"/>
+        <property name="removeAbandonedTimeout" value="180"/>
+        <property name="maxWaitMillis" value="3000"/>
+        <property name="validationQuery" value="select 1"/>
+        <property name="testOnBorrow" value="true"/>
+</property>

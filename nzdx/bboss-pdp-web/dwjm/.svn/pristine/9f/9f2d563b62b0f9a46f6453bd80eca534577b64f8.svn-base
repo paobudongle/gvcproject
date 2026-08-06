@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.bbossgroups.security:bboss-security-web:5.0.9">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.bbossgroups.security/bboss-security-web/5.0.9/f6be83736ae4a76124d8632a95c6d1652fcbf1f7/bboss-security-web-5.0.9.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.bbossgroups.security/bboss-security-web/5.0.9/6dd0b190a89904f0b4d7748389d6ebc91f44f2e9/bboss-security-web-5.0.9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

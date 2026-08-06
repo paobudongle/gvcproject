@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.bbossgroups:bboss-hession:5.0.9">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.bbossgroups/bboss-hession/5.0.9/bcffa18e59dc2ee272b80c3a1d683540625c4eb8/bboss-hession-5.0.9.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.bbossgroups/bboss-hession/5.0.9/b0c1df1aacdbcac3264156930769828044eb4b14/bboss-hession-5.0.9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

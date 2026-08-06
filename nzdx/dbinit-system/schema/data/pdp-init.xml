@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manager-config>
+	<description>
+<![CDATA[
+	smc mysql初始化语句
+ ]]>
+	</description>
+	<!--
+		<properties name="insert"> <property name="insert-mysql">
+
+		<![CDATA[insert into mq_users (broker_id, user_id, user_name,
+		user_password) values (?, ?, 'system', 'manager')]]> </property>
+		<property name="insert-oracle"> <![CDATA[insert into mq_users
+		(broker_id, user_id, user_name, user_password) values (?, ?, 'system',
+		'manager')]]> </property> </properties>
+	-->
+
+
+
+
+		<property name="all_datas">
+			<list>
+			
+				 
+
+				<property  name="addtd_sm_job">
+					<map>
+						<property name="default">
+
+							<list>
+								<property index="0"><![CDATA[insert into td_sm_job
+  				(JOB_ID, JOB_NAME, JOB_DESC, JOB_FUNCTION,JOB_AMOUNT,JOB_NUMBER,JOB_CONDITION,JOB_RANK,OWNER_ID)
+				values
+  				('1','在职','不能删除',' ',' ',' ',' ',' ',1)]]></property>
+
+
+							</list>
+
+						</property>
+					</map>
+				</property>
+
+				<property  name="addtd_sm_role_list">
+					<map>
+						<property name="default">
+							<list>
+								<property index="0"><![CDATA[insert into td_sm_role
+									  (ROLE_ID,
+									   ROLE_NAME,
+									   ROLE_TYPE,
+									   ROLE_DESC,
+									   ROLE_USAGE,
+									   REMARK1,
+									   REMARK2,
+									   REMARK3,
+									   OWNER_ID)
+									values
+									  ('1',
+									   'administrator',
+									   '1',
+									   '超级管理员角色，此角色不要修改，超级管理员admin自动拥有本角色，只有admin可以将本角色授予其他用户，本角色也不需要授予权限，默认拥有系统中的所有权限',
+									   ' ',
+									   ' ',
+									   ' ',
+									   ' ',
+									   1)]]></property>
+								<property index="1"><![CDATA[insert into td_sm_role
+									  (ROLE_ID,
+									   ROLE_NAME,
+									   ROLE_TYPE,
+									   ROLE_DESC,
+									   ROLE_USAGE,
+									   REMARK1,
+									   REMARK2,
+									   REMARK3,
+									   OWNER_ID)
+									values
+									  ('2',
+									   'roleofeveryone',
+									   '1',
+									   '每个用户都缺省拥有的角色，此角色不能被修改，也不能被删除',
+									   ' ',
+									   ' ',
+									   ' ',
+									   ' ',
+									   1)]]></property>
+								<property index="2"><![CDATA[insert into td_sm_role
+									  (ROLE_ID,
+									   ROLE_NAME,
+									   ROLE_TYPE,
+									   ROLE_DESC,
+									   ROLE_USAGE,
+									   REMARK1,
+									   REMARK2,
+									   REMARK3,
+									   OWNER_ID)
+									values
+									  ('3',
+									   'orgmanager',
+									   '1',
+									   '部门管理员角色,此角色不能被修改，也不能被删除，所有部门管理员自动拥有本角色',
+									   ' ',
+									   ' ',
+									   ' ',
+									   ' ',
+									   1)]]></property>
+								<property index="3"><![CDATA[insert into td_sm_role
+									  (ROLE_ID,
+									   ROLE_NAME,
+									   ROLE_TYPE,
+									   ROLE_DESC,
+									   ROLE_USAGE,
+									   REMARK1,
+									   REMARK2,
+									   REMARK3,
+									   OWNER_ID)
+									values
+									  ('4',
+									   'orgmanagerroletemplate',
+									   '1',
+									   '部门管理员角色模板,本角色不能被删除和修改，不能授予普通用户，只能够授权，新增部门管理员时自动拥有本角色，只有超级管理员才能给部门管理员角色模板授权',
+									   ' ',
+									   ' ',
+									   ' ',
+									   ' ',
+									   1)]]></property>
+									   
+									   
+									  <property index="7"><![CDATA[insert into td_sm_role
+									  (ROLE_ID,
+									   ROLE_NAME,
+									   ROLE_TYPE,
+									   ROLE_DESC,
+									   ROLE_USAGE,
+									   REMARK1,
+									   REMARK2,
+									   REMARK3,
+									   OWNER_ID)
+									values
+									  ('99',
+									   'guest',
+									   '1',
+									   '匿名用户角色，没有登录系统时访客拥有的角色',
+									   ' ',
+									   ' ',
+									   ' ',
+									   ' ',
+									   1)]]></property> 
+
+
+							</list>
+						</property>
+					</map>
+				</property>
+
+				<property name="addtd_sm_dict">
+					<map>
+						<property name="default">
+							<list>
+								<property index="0"><![CDATA[INSERT INTO td_sm_dict (DICT_ID, HANDLER, DICT_CODE, DICT_NAME, CACHE_ENABLE, IS_TREE, OWNER_ID, DICT_DESC, DICT_STATUS) VALUES ('8ce34d257e93477ab29435d5d629a224', 'default', 'userType', '用户类别', '1', '0', '1', '用户类别', '1')]]></property>
+					
+								<property index="10"><![CDATA[INSERT INTO td_sm_dict (DICT_ID, HANDLER, DICT_CODE, DICT_NAME, CACHE_ENABLE, IS_TREE, OWNER_ID, DICT_DESC, DICT_STATUS) VALUES ('c7b06495bce34779b1b20a70ddb03a68', 'default', 'sex', '性别', '0', '1', '1', '用户性别', '1')]]></property>
+								<property index="11"><![CDATA[INSERT INTO td_sm_dict (DICT_ID, HANDLER, DICT_CODE, DICT_NAME, CACHE_ENABLE, IS_TREE, OWNER_ID, DICT_DESC, DICT_STATUS) VALUES ('c8a5641788724925a98f21d1cda4ddab', 'default', 'userIsvalid', '用户状态', '1', '0', '1', '用户状态', '1')]]></property>
+								   
+							</list>
+						</property>
+					</map>
+				</property>
+				
+				<property name="addtd_sm_dict_item">
+					<map>
+						<property name="default">
+							<list>
+								<property index="0"><![CDATA[INSERT INTO td_sm_parameters (PAEAM_ID, NAME, RN, VALUE, DICT_ID, data_order) VALUES ('0787e7ccc1224066a1bb0f34f87aa644', '第三方用户', 0, '2', '8ce34d257e93477ab29435d5d629a224', 2)]]></property>
+								<property index="0"><![CDATA[INSERT INTO td_sm_parameters (PAEAM_ID, NAME, RN, VALUE, DICT_ID, data_order) VALUES ('0900329ec961462d9a169ad506aff537', '系统用户', 0, '0', '8ce34d257e93477ab29435d5d629a224', 0)]]></property>
+								<property index="0"><![CDATA[INSERT INTO td_sm_parameters (PAEAM_ID, NAME, RN, VALUE, DICT_ID, data_order) VALUES ('3ba34a202cc24bce946b24be3606acb8', '女', 0, 'F', 'c7b06495bce34779b1b20a70ddb03a68', 1)]]></property>
+								<property index="0"><![CDATA[INSERT INTO td_sm_parameters (PAEAM_ID, NAME, RN, VALUE, DICT_ID, data_order) VALUES ('3d8c7cbd0a1247c487ee3b6742a9dcca', '男', 0, 'M', 'c7b06495bce34779b1b20a70ddb03a68', 0)]]></property>
+								<property index="0"><![CDATA[INSERT INTO td_sm_parameters (PAEAM_ID, NAME, RN, VALUE, DICT_ID, data_order) VALUES ('44e51509b27f46dd88edd347f5ebca8c', '未知', 0, '-1', 'c7b06495bce34779b1b20a70ddb03a68', 3)]]></property>
+								<property index="0"><![CDATA[INSERT INTO td_sm_parameters (PAEAM_ID, NAME, RN, VALUE, DICT_ID, data_order) VALUES ('aee8a36f00f648e7b42168b36db18c6f', '开通', 0, '2', 'c8a5641788724925a98f21d1cda4ddab', 0)]]></property>
+								<property index="0"><![CDATA[INSERT INTO td_sm_parameters (PAEAM_ID, NAME, RN, VALUE, DICT_ID, data_order) VALUES ('b22ff451aa4f4da98545d7d8c6fb8e7a', '申请', 0, '1', 'c8a5641788724925a98f21d1cda4ddab', 3)]]></property>
+								<property index="0"><![CDATA[INSERT INTO td_sm_parameters (PAEAM_ID, NAME, RN, VALUE, DICT_ID, data_order) VALUES ('e28457861a0846f9b47c2fcd7e14e029', '停用', 0, '3', 'c8a5641788724925a98f21d1cda4ddab', 1)]]></property>
+								<property index="0"><![CDATA[INSERT INTO td_sm_parameters (PAEAM_ID, NAME, RN, VALUE, DICT_ID, data_order) VALUES ('e507539e36df4c978896b52ba22a746d', '删除', 0, '0', 'c8a5641788724925a98f21d1cda4ddab', 2)]]></property>
+								<property index="0"><![CDATA[INSERT INTO td_sm_parameters (PAEAM_ID, NAME, RN, VALUE, DICT_ID, data_order) VALUES ('f80192892881439680f96033525de1db', '域用户', 0, '1', '8ce34d257e93477ab29435d5d629a224', 1)]]></property>
+								   
+							</list>
+						</property>
+					</map>
+				</property>
+
+				<property name="addtd_sm_roletype">
+					<map>
+						<property name="default">
+
+							<list>
+								<property index="0"><![CDATA[insert into td_sm_roletype
+  				(TYPE_NAME, TYPE_DESC, TYPE_ID, CREATOR_USER_ID,CREATOR_ORG_ID)
+				values
+  				('系统默认角色','系统默认角色',1,'1','1')]]></property>
+  				
+  				               <property index="1"><![CDATA[insert into td_sm_roletype
+  				(TYPE_NAME, TYPE_DESC, TYPE_ID, CREATOR_USER_ID,CREATOR_ORG_ID)
+				values
+  				('普遍角色','普遍角色','3','1','1')]]></property>
+
+							</list>
+						</property>
+					</map>
+				</property>
+
+				<property name="addtd_sm_user">
+					<map>
+						<property name="default">
+
+
+							<list>
+								<property index="0"><![CDATA[insert into td_sm_user
+  				(USER_ID, USER_SN, USER_NAME, USER_PASSWORD,USER_REALNAME,USER_PINYIN,USER_SEX,USER_HOMETEL,
+  				USER_WORKTEL,USER_WORKNUMBER,USER_MOBILETEL1,USER_MOBILETEL2,USER_FAX,USER_OICQ,USER_BIRTHDAY,
+  				USER_EMAIL,USER_ADDRESS,USER_POSTALCODE,USER_IDCARD,USER_ISVALID,USER_REGDATE,USER_LOGINCOUNT,
+  				USER_TYPE,REMARK1,REMARK2,REMARK3,REMARK4,REMARK5,PAST_TIME,DREDGE_TIME,LASTLOGIN_DATE,
+  				WORKLENGTH,POLITICS,ISTAXMANAGER,LOGON_IP,CERT_SN)
+				values
+  				('1',1,'admin','E10ADC3949BA59ABBE56E057F20F883E','系统管理员',' ','M',' ',
+  				' ','0',' ',' ',' ',' ',null,
+  				' ',' ',' ',' ',2,null,null,
+  				'0',' ',' ',' ',' ',' ',null,' ',null,
+  				' ',' ',null,' ',' ')]]></property>
+
+							</list>
+						</property>
+					</map>
+
+				</property>
+
+
+				<property name="addtd_sm_userrole">
+					<map>
+						<property name="default">
+
+							<list>
+								<property index="0"><![CDATA[insert into td_sm_userrole
+  				(USER_ID, ROLE_ID, RESOP_ORIGIN_USERID)
+				values
+  				('1','1',' ')]]></property>
+
+							</list>
+						</property>
+					</map>
+
+				</property>
+				 
+			
+				 
+			
+			
+
+			</list>
+		</property>
+	
+
+
+</manager-config>

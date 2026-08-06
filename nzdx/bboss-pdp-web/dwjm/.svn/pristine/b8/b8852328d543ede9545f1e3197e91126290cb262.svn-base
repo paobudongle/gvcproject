@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.bbossgroups.plugins:bboss-plugin-activemq:5.0.9">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.bbossgroups.plugins/bboss-plugin-activemq/5.0.9/d60b715d61932c656316fb96f58ad2ca8fac3fb1/bboss-plugin-activemq-5.0.9.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.bbossgroups.plugins/bboss-plugin-activemq/5.0.9/2c6628d4df6be6e078402ec66ab59db3788d5e21/bboss-plugin-activemq-5.0.9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

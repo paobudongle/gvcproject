@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bboss-pdp-adminservice/bboss-pdp-adminservice.iml" filepath="$PROJECT_DIR$/.idea/modules/bboss-pdp-adminservice/bboss-pdp-adminservice.iml" group="bboss-pdp-adminservice" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bboss-pdp-adminservice/bboss-pdp-adminservice_main.iml" filepath="$PROJECT_DIR$/.idea/modules/bboss-pdp-adminservice/bboss-pdp-adminservice_main.iml" group="bboss-pdp-adminservice" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bboss-pdp-adminservice/bboss-pdp-adminservice_test.iml" filepath="$PROJECT_DIR$/.idea/modules/bboss-pdp-adminservice/bboss-pdp-adminservice_test.iml" group="bboss-pdp-adminservice" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bboss-pdp-auth/bboss-pdp-auth.iml" filepath="$PROJECT_DIR$/.idea/modules/bboss-pdp-auth/bboss-pdp-auth.iml" group="bboss-pdp-auth" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bboss-pdp-auth/bboss-pdp-auth_main.iml" filepath="$PROJECT_DIR$/.idea/modules/bboss-pdp-auth/bboss-pdp-auth_main.iml" group="bboss-pdp-auth" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bboss-pdp-auth/bboss-pdp-auth_test.iml" filepath="$PROJECT_DIR$/.idea/modules/bboss-pdp-auth/bboss-pdp-auth_test.iml" group="bboss-pdp-auth" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bboss-pdp-config/bboss-pdp-config.iml" filepath="$PROJECT_DIR$/.idea/modules/bboss-pdp-config/bboss-pdp-config.iml" group="bboss-pdp-config" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bboss-pdp-config/bboss-pdp-config_main.iml" filepath="$PROJECT_DIR$/.idea/modules/bboss-pdp-config/bboss-pdp-config_main.iml" group="bboss-pdp-config" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bboss-pdp-config/bboss-pdp-config_test.iml" filepath="$PROJECT_DIR$/.idea/modules/bboss-pdp-config/bboss-pdp-config_test.iml" group="bboss-pdp-config" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bboss-pdp-dict/bboss-pdp-dict.iml" filepath="$PROJECT_DIR$/.idea/modules/bboss-pdp-dict/bboss-pdp-dict.iml" group="bboss-pdp-dict" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bboss-pdp-dict/bboss-pdp-dict_main.iml" filepath="$PROJECT_DIR$/.idea/modules/bboss-pdp-dict/bboss-pdp-dict_main.iml" group="bboss-pdp-dict" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bboss-pdp-dict/bboss-pdp-dict_test.iml" filepath="$PROJECT_DIR$/.idea/modules/bboss-pdp-dict/bboss-pdp-dict_test.iml" group="bboss-pdp-dict" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bboss-pdp-dubbo/bboss-pdp-dubbo.iml" filepath="$PROJECT_DIR$/.idea/modules/bboss-pdp-dubbo/bboss-pdp-dubbo.iml" group="bboss-pdp-dubbo" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bboss-pdp-dubbo-inf/bboss-pdp-dubbo-inf.iml" filepath="$PROJECT_DIR$/.idea/modules/bboss-pdp-dubbo-inf/bboss-pdp-dubbo-inf.iml" group="bboss-pdp-dubbo-inf" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bboss-pdp-dubbo-inf/bboss-pdp-dubbo-inf_main.iml" filepath="$PROJECT_DIR$/.idea/modules/bboss-pdp-dubbo-inf/bboss-pdp-dubbo-inf_main.iml" group="bboss-pdp-dubbo-inf" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bboss-pdp-dubbo-inf/bboss-pdp-dubbo-inf_test.iml" filepath="$PROJECT_DIR$/.idea/modules/bboss-pdp-dubbo-inf/bboss-pdp-dubbo-inf_test.iml" group="bboss-pdp-dubbo-inf" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bboss-pdp-dubbo/bboss-pdp-dubbo_main.iml" filepath="$PROJECT_DIR$/.idea/modules/bboss-pdp-dubbo/bboss-pdp-dubbo_main.iml" group="bboss-pdp-dubbo" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bboss-pdp-dubbo/bboss-pdp-dubbo_test.iml" filepath="$PROJECT_DIR$/.idea/modules/bboss-pdp-dubbo/bboss-pdp-dubbo_test.iml" group="bboss-pdp-dubbo" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bboss-pdp-fastwx/bboss-pdp-fastwx.iml" filepath="$PROJECT_DIR$/.idea/modules/bboss-pdp-fastwx/bboss-pdp-fastwx.iml" group="bboss-pdp-fastwx" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bboss-pdp-fastwx/bboss-pdp-fastwx_main.iml" filepath="$PROJECT_DIR$/.idea/modules/bboss-pdp-fastwx/bboss-pdp-fastwx_main.iml" group="bboss-pdp-fastwx" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bboss-pdp-fastwx/bboss-pdp-fastwx_test.iml" filepath="$PROJECT_DIR$/.idea/modules/bboss-pdp-fastwx/bboss-pdp-fastwx_test.iml" group="bboss-pdp-fastwx" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bboss-pdp-web/bboss-pdp-web.iml" filepath="$PROJECT_DIR$/.idea/modules/bboss-pdp-web/bboss-pdp-web.iml" group="bboss-pdp-web" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bboss-pdp-web/bboss-pdp-web_main.iml" filepath="$PROJECT_DIR$/.idea/modules/bboss-pdp-web/bboss-pdp-web_main.iml" group="bboss-pdp-web" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bboss-pdp-web/bboss-pdp-web_test.iml" filepath="$PROJECT_DIR$/.idea/modules/bboss-pdp-web/bboss-pdp-web_test.iml" group="bboss-pdp-web" />
+      <module fileurl="file://$PROJECT_DIR$/dwjm.iml" filepath="$PROJECT_DIR$/dwjm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dwjm_main.iml" filepath="$PROJECT_DIR$/.idea/modules/dwjm_main.iml" group="dwjm" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dwjm_test.iml" filepath="$PROJECT_DIR$/.idea/modules/dwjm_test.iml" group="dwjm" />
+    </modules>
+  </component>
+</project>

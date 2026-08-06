@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+**
+ *  Copyright 2008-2010 biaoping.yin
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ *
+ * Title: question.xml
+ * Description: 问题主表sql配置文件 
+ * Company:xbc
+ * Copyright (c) 2015
+ * @Date 2019-06-22 14:10:54
+ * @author lijia
+ * @version v1.0 
+ **
+ -->
+<properties>
+	
+		<property name="addQuestion">
+		<![CDATA[
+			insert into t_question_main (q_id,answer_count,q_content,q_time,q_title,user_id,user_name,view_count) values(#[qId],#[answerCount],#[qContent],#[qTime],#[qTitle],#[userId],#[userName],#[viewCount])
+		]]>
+	</property>
+		<property name="deleteByKey">
+		<![CDATA[
+			delete from t_question_main where q_id=?
+		]]>
+	</property>
+		<property name="updateQuestion">
+		<![CDATA[
+			update t_question_main set q_id=#[qId],answer_count=#[answerCount],q_content=#[qContent],q_time=#[qTime],q_title=#[qTitle],user_id=#[userId],user_name=#[userName],view_count=#[viewCount] where q_id=#[qId]
+		]]>
+	</property>
+
+	<property name="addToAnswerCount">
+		<![CDATA[
+			update t_question_main set answer_count= answer_count + 1  where q_id= ?
+		]]>
+	</property>
+
+	<property name="addToViewCount">
+		<![CDATA[
+			update t_question_main set view_count= view_count + 1  where q_id= ?
+		]]>
+	</property>
+
+		<property name="selectById">
+		<![CDATA[
+			select * from t_question_main where q_id=?
+		]]>
+	</property>
+		<property name="queryListQuestion">
+		<![CDATA[
+			select q_id, q_title, view_count,answer_count,q_time,user_name from t_question_main where 1=1
+
+			#if($qTitle && !$qTitle.equals(""))
+				and q_title like #[qTitle]		
+			#end
+
+			#if($myQuestion && !$myQuestion.equals(""))
+				and user_id = #[userId]
+			#end
+
+			#if($myAnswer && !$myAnswer.equals(""))
+				and user_id = #[userId]
+			#end
+
+
+			#if($sortKey && !$sortKey.equals(""))
+
+				order by $sortKey
+
+				#if($sortDesc)
+					desc
+				#else
+					asc
+				#end
+			#end
+
+		]]>
+	</property>
+
+	<property name="addQuestionAnswer">
+		<![CDATA[
+			insert into t_question_answer (answer_id,answer_content,answer_time,q_id,user_id,user_name) values(#[answerId],#[answerContent],#[answerTime],#[qId],#[userId],#[userName])
+		]]>
+	</property>
+
+	<property name="queryListQuestionAnswer">
+		<![CDATA[
+			select * from t_question_answer where q_id = ?
+
+		]]>
+	</property>
+
+	</properties>

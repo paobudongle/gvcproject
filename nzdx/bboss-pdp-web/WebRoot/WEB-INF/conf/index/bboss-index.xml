@@ -1,0 +1,24 @@
+<properties>
+
+	<property name="/index/*.page"
+			  path:index="/jsp/index/index.jsp"
+			  path:toProjectInfo="/jsp/index/projectInfo.jsp"
+			  path:toReview="/jsp/index/knowledgeReview.jsp"
+			  path:toExperIndex="/jsp/index/experIndex.jsp"
+			  path:toResource="/jsp/index/resourceIndex.jsp"
+			  path:toUserDb="/jsp/index/userDb.jsp"
+			  path:toProjDeclar="/jsp/index/projDeclar.jsp"
+			  path:toQuestions="/jsp/question/questionIndex.jsp"
+
+			  path:toProject="/jsp/index/projectInfo.jsp"
+			  path:toProjectC="/jsp/index/projectInfoc.jsp"
+			  path:toProjectD="/jsp/index/projectInfod.jsp"
+			  path:toNewsA="/jsp/index/newsa.jsp"
+			  path:toNewsB="/jsp/index/newsb.jsp"
+			  path:toNewsC="/jsp/index/newsc.jsp"
+			  path:toNewsD="/jsp/index/newsd.jsp"
+			  path:playVideo="/jsp/playvideo/playvideo.jsp"
+			  class="com.pcloud.index.action.IndexController" >
+	</property>
+
+</properties>

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.jfinal:jfinal-weixin:1.9">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jfinal/jfinal-weixin/1.9/9c7c243df575dde717e522b1f92c34e2026864a6/jfinal-weixin-1.9.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jfinal/jfinal-weixin/1.9/4239cbbaf0c66f31729567fa0bd7dea5bb8966b6/jfinal-weixin-1.9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

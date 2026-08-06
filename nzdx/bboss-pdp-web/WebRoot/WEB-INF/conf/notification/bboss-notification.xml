@@ -1,0 +1,41 @@
+<properties>
+
+	<!-- 
+		描述:初始化通知公告控制器NotificationController，并将所有关联的通知公告service注入到此控制器中。并以别名的形式定义好跳转页面。
+	    author:lijia
+		CopyRight:bxc
+		版本:v1.0 
+	    Date: 2018-12-13 12:31:18
+	-->
+
+	<property name="/notifcation/*.page"
+		path:index="/jsp/notifcation/main.jsp"
+		path:queryListInfoNotifications="/jsp/notifcation/notificationListInfo.jsp"
+		path:queryListNotifications="/jsp/notifcation/notificationList.jsp"
+		path:updateNotification="/jsp/notifcation/notificationEdit.jsp"
+		path:addNotification="/jsp/notifcation/notificationAdd.jsp"
+		path:getNotification="/jsp/notifcation/notificationView.jsp"
+		path:toNotificationindex="/jsp/index/myCenter.jsp"
+		f:notificationService="attr:notification.notificationService"
+		f:smUserService="attr:user.smUserService"
+		f:serialNumberService="attr:serialnumber.serialNumberService"
+		class="com.pcloud.notification.action.NotificationController" >
+	</property>
+		<property name="notification.WSnotificationService"
+		ws:servicePort="notificationService" 
+		hessian:servicePort="notificationService"
+		f:notificationService="attr:notification.notificationService"
+		class="com.pcloud.notification.ws.WSNotificationServiceImpl" >
+	</property>
+		<property name="notification.notificationService"
+		f:executor="attr:notification.configsqlexecutor"
+		class="com.pcloud.notification.service.NotificationServiceImpl"
+		/>
+	<property name="notification.configsqlexecutor"		
+		class="com.frameworkset.common.poolman.ConfigSQLExecutor" >
+		<construction>
+			<property value="com/pcloud/notification/service/notification.xml"/>
+		</construction>
+	</property>
+	
+</properties>

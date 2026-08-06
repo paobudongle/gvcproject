@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+**
+ *  Copyright 2008-2010 biaoping.yin
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ *
+ * Title: channel.xml
+ * Description: 栏目管理sql配置文件 
+ * Company:bxckj
+ * Copyright (c) 2015
+ * @Date 2018-02-26 21:15:12
+ * @author lijia
+ * @version v1.0 
+ **
+ -->
+<properties>
+	
+		<property name="addChannel">
+		<![CDATA[
+			insert into t_cms_channel (channel_id,create_date,creater,del_flag,description,has_content,is_blank_open,is_display,keywrods,last_modifier,last_modify_date,order_no,pid,sort_title,title,tpl_content) values(#[channelId],#[createDate],#[creater],#[delFlag],#[description],#[hasContent],#[isBlankOpen],#[isDisplay],#[keywrods],#[lastModifier],#[lastModifyDate],#[orderNo],#[pid],#[sortTitle],#[title],#[tplContent])
+		]]>
+	</property>
+		<property name="deleteByKey">
+		<![CDATA[
+			delete from t_cms_channel where channel_id=?
+		]]>
+	</property>
+		<property name="updateChannel">
+		<![CDATA[
+			update t_cms_channel set channel_id=#[channelId],create_date=#[createDate],creater=#[creater],del_flag=#[delFlag],description=#[description],has_content=#[hasContent],is_blank_open=#[isBlankOpen],is_display=#[isDisplay],keywrods=#[keywrods],last_modifier=#[lastModifier],last_modify_date=#[lastModifyDate],order_no=#[orderNo],pid=#[pid],sort_title=#[sortTitle],title=#[title],tpl_content=#[tplContent] where channel_id=#[channelId]
+		]]>
+	</property>
+		<property name="selectById">
+		<![CDATA[
+			select * from t_cms_channel where channel_id=?
+		]]>
+	</property>
+
+	<property name="queryListChannel">
+		<![CDATA[
+			select * from t_cms_channel where 1=1 and pid <> '0'
+			#if($title && !$title.equals(""))
+				and title like #[title]		
+			#end
+
+			order by order_no
+			
+		]]>
+	</property>
+
+
+	<property name="getChildren">
+		<![CDATA[
+				SELECT *
+				  FROM t_cms_channel
+				 WHERE pid = ?
+
+				order by order_no
+		]]>
+	</property>
+	</properties>
